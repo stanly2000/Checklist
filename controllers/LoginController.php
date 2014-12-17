@@ -12,5 +12,7 @@
  * @author dev
  */
 class LoginController {
-    //put your code here
+    public function index() {
+        
+    }
 }
