@@ -25,7 +25,4 @@ class User {
         $stmt->execute();
         return   $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function Login() {
-        
-    }
 }
