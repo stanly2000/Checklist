@@ -17,3 +17,5 @@ foreach($db->query('SELECT * FROM tbUser') as $row) {
 //   echo $row['FirstName'].' '.$row['LastName'];
 //}
 ?>
+<p> test </p>
+
