@@ -16,7 +16,7 @@ class App
         echo "<br>".$this->url_action;
      
         $this->splitUrl();
-        $this->validateRouterParams();
+       // $this->validateRouterParams();
 
         if (!$this->url_controller) {
 
