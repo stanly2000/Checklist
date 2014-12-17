@@ -6,6 +6,7 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 foreach($db->query('SELECT * FROM tbUser') as $row) {
     echo $row['FirstName'].' '.$row['LastName']; //etc...
 }
+//test message
 
 //
 //$result = mysql_query('SELECT * from tbUser') or die(mysql_error());
