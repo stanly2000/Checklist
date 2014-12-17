@@ -7,11 +7,11 @@ class ChecklistController extends Controller
 
          $model = $this->model('Checklist');
          $checklists = $model->getAll();
-         $this->render('checklist/index',['users'=>$checklists ]);
+         $this->render('checklist/index',['checklists'=>$checklists ]);
     }
 
 
-    public function details()
+    public function details($id)
     {
 
        $model = $this->model('Checklist');
@@ -21,7 +21,7 @@ class ChecklistController extends Controller
             $existChecklist = $model->get($id);
         }
         
-        $this->render('checklist/details',['clist'=>$existChecklist ]);
+        $this->render('checklist/details',['checklist'=>$existChecklist ]);
         
     }
 }
