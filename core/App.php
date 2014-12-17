@@ -17,15 +17,17 @@ class App
      
         $this->splitUrl();
        // $this->validateRouterParams();
+        if ($this->url_controller)
+            $this->url_controller = $this->url_controller.'Controller';
 
         if (!$this->url_controller) {
 
             require ROOT . 'controllers/homeController.php';
-            $page = new Home();
+            $page = new HomeController();
             $page->index();
 
-        } elseif (file_exists(ROOT . 'controllers/' . $this->url_controller . 'Controller.php')) {
-            require ROOT . 'controllers/' . $this->url_controller . 'Controller.php';
+        } elseif (file_exists(ROOT . 'controllers/' . $this->url_controller . '.php')) {
+            require ROOT . 'controllers/' . $this->url_controller . '.php';
             $this->url_controller = new $this->url_controller();
 
 

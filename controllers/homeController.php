@@ -1,7 +1,7 @@
 <?php
 
 require_once ROOT.'models/HomeTest.php';
-class Home extends Controller
+class HomeController extends Controller
 {
 
     public function index()
