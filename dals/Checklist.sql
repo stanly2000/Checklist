@@ -339,4 +339,69 @@ AssignTime    datetime
     END //
  DELIMITER ;
  
+  DELIMITER //
+ CREATE PROCEDURE spUpdateStatus(
+ p_StatusID int,
+ p_StatusName varchar(60)
+ )
+    begin
+		 update tbStatus set
+				StatusName = p_StatusName
+		 where  StatusID   = p_StatusID;		
+    END //
+ DELIMITER ;
  
+ DELIMITER //
+ CREATE PROCEDURE spDeleteStatus(
+ p_StatusID int
+ )
+    begin
+		 delete from tbStatus
+         where StatusID = p_StatusID;
+    END //
+ DELIMITER ;
+ 
+ -- CRUD for tbAssignChecklist
+ -- this procedure inserts new columns in tbAssignChecklist
+ DELIMITER //
+ CREATE PROCEDURE spAssignChecklist(  
+ p_GroupID int,
+ p_ChecklistID int,
+ p_AssignTime int
+ )
+    begin
+		 insert into tbAssignChecklist 
+                (GroupID, ChecklistID, AssignTime) values
+			   (p_GroupID, p_ChecklistID, p_AssignTime);              
+    END //
+ DELIMITER ;
+ 
+ -- this procedure updates or modifies data in tbAssignChecklist
+ DELIMITER //
+ CREATE PROCEDURE spUpdateAssignChecklist(
+ p_AssignID int,
+ p_GroupID int,
+ p_ChecklistID int,
+ p_AssignTime datetime
+ )
+    begin
+         update tbAssignChecklist set
+				GroupID     = p_GroupID,
+                ChecklistID = p_ChecklistID,
+                AssignTime  = NOW()   -- gets current date time
+		 where  AssignID    = p_AssignID;		
+    END //
+ DELIMITER ;
+ 
+ -- this procedure deletes assigned checklists from tbAssignChecklist
+  DELIMITER //
+ CREATE PROCEDURE spDeleteAssignChecklist(
+ p_AssignID int
+ )
+    begin
+		 delete from tbAssignChecklist
+         where AssignID = p_AssignID;
+    END //
+ DELIMITER ;
+ 
+-- Stored Procedures to enter trigger logs in Log Tables --
