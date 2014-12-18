@@ -25,7 +25,7 @@
                 </br>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log In" class="btn btn-default" />
+                        <input type="submit" value="Log In" class="btn btn-success" />
                     </div>
                 </div>
                 </br>

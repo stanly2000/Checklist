@@ -13,7 +13,7 @@
         </div>
 <div class="form-group">
     <div class="col-mid-offswt-2 col-md-10">
-        <input type="submit" class="btn btn-default" value="submit" id="linkbtn"/>
+        <input type="submit" class="btn btn-success" value="submit" id="linkbtn"/>
     </di>
     </div>
         
