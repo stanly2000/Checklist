@@ -21,4 +21,10 @@ class Checklist {
         $stmt->execute();
         return   $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function update($params = [])
+    {
+$stmt = $this->db->prepare("UPDATE tbChecklist SET ChecklistName=? WHERE ChecklistID=?");
+$stmt->execute(array($params['title'], $params['id']));
+$affected_rows = $stmt->rowCount();
+    }
 }

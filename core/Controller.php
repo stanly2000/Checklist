@@ -27,9 +27,17 @@ class Controller
     }
     
     public function render($activeController, $activeControllerMethod, $view, $data = [],$callbackMethod = null){
-        $activeController = strtolower($activeController);
+        
+        $activeController = strtolower(str_replace('Controller', '', $activeController));
+        echo $view;
         require APP . 'views/_shared/header.php';
         require APP . 'views/'.$view.'.php';
         require APP . 'views/_shared/footer.php';
+    }
+    
+    public function redirect($Controller, $ControllerMethod = null, $params = []){
+        $Controller = strtolower(str_replace('Controller', '', $Controller));
+        header('Location: '.RESOURCE.'/'.$Controller.'/'.$ControllerMethod);
+        exit;
     }
 }

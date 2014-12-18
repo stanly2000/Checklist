@@ -6,7 +6,7 @@ class ChecklistController extends Controller
         
          $model = $this->model('Checklist');
          $checklists = $model->getAll();
-         $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'checklist/index',['checklists'=>$checklists ]);
+         $this->render( __CLASS__,__FUNCTION__,'checklist/index',['checklists'=>$checklists ]);
     }
 
 
@@ -20,8 +20,7 @@ class ChecklistController extends Controller
             $existChecklist = $model->get($id);
         }
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,
-                'checklist/view',['checklist'=>$existChecklist ]);
+        $this->render( __CLASS__,__FUNCTION__,'checklist/view',['checklist'=>$existChecklist ]);
         
     }
     public function update($id=null)
@@ -35,7 +34,9 @@ class ChecklistController extends Controller
             $existChecklist = $model->get($id);
         }
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'checklist/update',['checklist'=>$existChecklist ],'updatePost' );
+        $this->render(__CLASS__,__FUNCTION__,
+                'checklist/update',
+    ['checklist'=>$existChecklist ],'updatePost' );
         
         
     }
@@ -43,11 +44,10 @@ class ChecklistController extends Controller
     public function updatePost()
     {
         $model = $this->model('Checklist');
-        if (isset($_POST['actn'])){
-            echo "<BR>ID=".$_POST['id'];
-            echo "<BR>title=".$_POST['title'];
-          //TODO actual update db
-        }
+            $params['title'] = $_POST['title'];
+            $params['id'] = $_POST['id'];
+            $model->update($params);
+        $this->redirect(__CLASS__);
     }
     
 }

@@ -16,9 +16,9 @@
      <?php foreach ($data['checklists'] as $clist)  { ?>
        <tr>
            <td><?php echo $clist->ChecklistName; ?></td>
-           <td><a href="checklist/view/<?php echo $clist->ChecklistID ?>" >view</a>&nbsp;
-           <a href="checklist/update/<?php echo $clist->ChecklistID ?>" >update</a>&nbsp;
-           <a href="checklist/delete/<?php echo $clist->ChecklistID ?>" >delete</a></td>
+           <td><a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $clist->ChecklistID ?>" >view</a>&nbsp;
+           <a href="<?php echo RESOURCE; ?>/checklist/update/<?php echo $clist->ChecklistID ?>" >update</a>&nbsp;
+           <a href="<?php echo RESOURCE; ?>/checklist/delete/<?php echo $clist->ChecklistID ?>" >delete</a></td>
        </tr>
      <?php } ?>
             </tbody>

@@ -8,7 +8,7 @@ class HomeController extends Controller
     {
       //  echo "HOME controller index METHOD";
         $header = APP . 'views/_shared/header.php';
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'home/index');
+        $this->render(__CLASS__,__FUNCTION__,'home/index');
     }
 
 
@@ -21,7 +21,7 @@ class HomeController extends Controller
 //        require APP . 'views/_shared/footer.php';
          $model = $this->model('User');
          $users = $model->getAll();
-         $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'home/test',['users'=>$users ]);
+         $this->render( __CLASS__,__FUNCTION__,'home/test',['users'=>$users ]);
         
     }
     
@@ -34,7 +34,7 @@ class HomeController extends Controller
             $existUser = $model->get($id);
         }
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'home/user',['user'=>$existUser ]);
+        $this->render( __CLASS__,__FUNCTION__,'home/user',['user'=>$existUser ]);
         
     }
 
