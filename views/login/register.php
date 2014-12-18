@@ -63,7 +63,7 @@
    
    <tr>
      <td>Password <br />(between 6 and 16 chars):</td>
-     <td valign="top"><input type="password" name="passwd"
+     <td valign="top"><input type="password" name="password"
          size="16" maxlength="16"/></td></tr>
    <tr>
      <td>Confirm password:</td>

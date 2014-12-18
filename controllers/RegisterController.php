@@ -7,7 +7,12 @@ class RegisterController extends Controller
     }
    
 
-    public function Register()
+     public function Register()
+    {
+        $this->render(__CLASS__,__FUNCTION__,'Register/Register',null,'RegisterPost' );
+    }
+    
+    public function RegisterPost()
     {         
         $Register = $model->RegisterUser();
             
