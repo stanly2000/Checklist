@@ -22,6 +22,7 @@ class Register {
 
       $stmt->execute(array(':FirstName' => $FirstName, 
           ':LastName' => $LastName, ':Email' => $Email, ':Password' => $Password));
+      $affected_rows = $stmt->rowCount();
         }
         
         catch (PDOException $e) 

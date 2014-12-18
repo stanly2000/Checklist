@@ -46,7 +46,7 @@
   </table>
   
   <!-- page content -->
- <form name="input" method="post" action="register_new.php" >
+ <form name="input" method="post" action="register.php" >
   <table align="left">
       
        <tr>
