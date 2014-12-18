@@ -22,16 +22,12 @@
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="../public/">Home</a></li>
-      <li><a href="#">Link</a></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Checklists <b class="caret"></b></a>
+        <a href="<?php echo RESOURCE ;?>/checklist" class="dropdown-toggle" data-toggle="dropdown">Checklists <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="../views/checklist/">View All Checklists</a></li>
-          <li><a href="../views/checklist/add.php">Add New Checklist</a></li>
+          <li><a href="<?php echo RESOURCE ;?>/checklist/">View All Checklists</a></li>
+          <li><a href="<?php echo RESOURCE ;?>/checklist/add.php">Add New Checklist</a></li>
           <li class="divider"></li>
-          <li class="dropdown-header">Users Manager</li>
-          <li><a href="../views/users/">View All Users</a></li>
-          <li><a href="../views/users/add.php">Add New User</a></li>
         </ul>
       </li>
     </ul>
@@ -39,15 +35,12 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="../views/Login/index.php">Login</a></li>
+      <li><a href="<?php echo RESOURCE ;?>/login/index.php">Login</a></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          <li><a href="<?php echo RESOURCE ;?>/users/">View All Users</a></li>
+          <li><a href="<?php echo RESOURCE ;?>/users/add.php">Add New User</a></li>
         </ul>
       </li>
     </ul>
@@ -57,17 +50,17 @@
         <div class="container body-content">
             
             <div class="row">  
-<div class="span6">  
-<ul class="breadcrumb">  
-    <li>  
-    <a href="<?php echo RESOURCE ;?>/index.php">Home</a> <span class="divider"></span>  
-  </li> 
-  <li>  
-    <a href="<?php echo RESOURCE ;?>/<?php echo $activeController;?>"><?php echo $activeController;?></a> <span class="divider"></span>  
-  </li>  
-  <li>  
-    <?php  echo $activeControllerMethod;?> <span class="divider"></span>  
-  </li>  
-</ul>  
-</div>  
-</div> 
+                <div class="span6">  
+                    <ul class="breadcrumb">  
+                            <li>  
+                            <a href="<?php echo RESOURCE ;?>/index.php">Home</a> <span class="divider"></span>  
+                          </li> 
+                          <li>  
+                            <a href="<?php echo RESOURCE ;?>/<?php echo $activeController;?>"><?php echo $activeController;?></a> <span class="divider"></span>  
+                          </li>  
+                          <li>  
+                            <?php  echo $activeControllerMethod;?> <span class="divider"></span>  
+                          </li>  
+                    </ul>  
+                </div>  
+            </div> 
