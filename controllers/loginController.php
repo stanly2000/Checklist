@@ -14,6 +14,13 @@
 class LoginController {
     public function index() {
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'login/index');
+        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,
+                'login/index', null, 'loginPost');
+    }
+    
+        public function loginPost () {
+            $model = $this->models('Login');
+$stmt->execute(array($_POST[''], $name));
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

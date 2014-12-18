@@ -4,16 +4,16 @@ class Login {
     
     public $Email;
     public $Password;
+    public $UserName;
+    public $ID;
     
     public function __construct($_email, $_password) {
         $this->Email = $_email;
         $this->Password = $_password;
     }
-    public function comfirm () {
-        $stmt = $db->query('CAll spLogin(?,?)');
-        $row_count = $stmt->rowCount();
-        if ($row_count == 0) {
-            header("Location: http://localhost/checklist/public/index.php");
-        }
+    public function get($_username, $_password) {
+                $stmt = $this->db->prepare("CALL spLogin(?,?)");
+        $stmt->execute(array($_username, $_password));
+        return   $stmt->fetch(PDO::FETCH_OBJ);
     }
 }
