@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Actions</th>
+                    <th>Actions &nbsp;&nbsp;&nbsp;<a href="<?php echo RESOURCE; ?>/checklist/add">Add New </a></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,11 +18,16 @@
            <td><?php echo $clist->ChecklistName; ?></td>
            <td><a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $clist->ChecklistID ?>" >view</a>&nbsp;
            <a href="<?php echo RESOURCE; ?>/checklist/update/<?php echo $clist->ChecklistID ?>" >update</a>&nbsp;
-           <a href="<?php echo RESOURCE; ?>/checklist/delete/<?php echo $clist->ChecklistID ?>" >delete</a></td>
+           <a href="#" >delete</a></td>
        </tr>
      <?php } ?>
             </tbody>
         </table>
     </div>
       <div class="col-lg-3">&nbsp;</div>
+      <form method="POST" action="<?php echo RESOURCE ;?>/home/">
+          <input type="hidden" name="id" value="">
+          <input type="hidden" name="cntr" value="<?php echo $activeController;?>" >
+          <input type="hidden" name="actn" value="rmPost" >
+      </form>
 </div>
