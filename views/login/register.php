@@ -15,6 +15,8 @@
   </style>
 </head>
 <body>
+    
+    
 
   <!-- page header -->
   <table width="100%" cellpadding="12" cellspacing="0" border="0" bgcolor="black">
@@ -44,15 +46,21 @@
   </table>
   
   <!-- page content -->
- <form method="post" action="register_new.php" >
+ <form name="input" method="post" action="register_new.php" >
   <table align="left">
+      
+       <tr>
+     <td>First Name:</td>
+     <td><input type="text" name="FirstName" size="30" maxlength="100"/></td></tr>
+      
+        <tr>
+     <td>Last Name:</td>
+     <td><input type="text" name="LastName" size="30" maxlength="100"/></td></tr>
+       
    <tr>
      <td>Email Address:</td>
      <td><input type="text" name="Email" size="30" maxlength="100"/></td></tr>
-   <tr>
-     <td>Preferred Username <br />(max 16 chars):</td>
-     <td valign="top"><input type="text" name="username"
-         size="16" maxlength="16"/></td></tr>
+   
    <tr>
      <td>Password <br />(between 6 and 16 chars):</td>
      <td valign="top"><input type="password" name="passwd"
