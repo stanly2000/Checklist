@@ -247,7 +247,8 @@ AssignTime    datetime
  
  DELIMITER //
  CREATE PROCEDURE spUpdateChecklist(
- p_ChecklistID int
+ p_ChecklistID int,
+ p_ChecklistName varchar(60)
  )
    BEGIN
    update tbChecklist set
