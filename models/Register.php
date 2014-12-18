@@ -25,7 +25,8 @@ class Register {
       $stmt->bindValue(':p_Email', $params['Email'], PDO::PARAM_STR);
       $stmt->bindValue(':p_Password', $params['Password'], PDO::PARAM_STR);
       
-      $stmt->execute();      
+      $stmt->execute();    
+     
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
