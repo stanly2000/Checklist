@@ -13,6 +13,6 @@
  */
 class LoginController {
     public function index() {
-        
+        require APP . '';
     }
 }
