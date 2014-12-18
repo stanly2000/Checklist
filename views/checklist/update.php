@@ -4,7 +4,7 @@
   <div class="col-lg-6">
       <form method="POST" action="<?php echo RESOURCE ;?>/home/index.php">
           <input type="hidden" name="cntr" value="<?php echo $activeController;?>" >
-          <input type="hidden" name="actn" value="<?php echo $activeControllerMethod;?>" >
+          <input type="hidden" name="actn" value="<?php echo $callbackMethod;?>" >
           <input type="hidden" name="id" value="<?php echo $data['checklist']->ChecklistID;?>" >
           
   <div class="form-group">

@@ -26,13 +26,7 @@ class ChecklistController extends Controller
     public function update($id=null)
     {
         $model = $this->model('Checklist');
-        if (isset($_POST['actn'])){
-            echo "<BR>ID=".$_POST['id'];
-            echo "<BR>title=".$_POST['title'];
-          //TODO actual update db
-        }
-        else
-        {
+
        
         $existChecklist = null;
         if ($id)
@@ -40,9 +34,19 @@ class ChecklistController extends Controller
             $existChecklist = $model->get($id);
         }
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'checklist/update',['checklist'=>$existChecklist ]);
-        }
+        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'checklist/update',['checklist'=>$existChecklist ],'updatePost' );
         
+        
+    }
+    
+    public function updatePost()
+    {
+        $model = $this->model('Checklist');
+        if (isset($_POST['actn'])){
+            echo "<BR>ID=".$_POST['id'];
+            echo "<BR>title=".$_POST['title'];
+          //TODO actual update db
+        }
     }
     
 }
