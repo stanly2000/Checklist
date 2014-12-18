@@ -20,7 +20,8 @@ class ChecklistController extends Controller
             $existChecklist = $model->get($id);
         }
         
-        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'checklist/view',['checklist'=>$existChecklist ]);
+        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,
+                'checklist/view',['checklist'=>$existChecklist ]);
         
     }
     public function update($id=null)
