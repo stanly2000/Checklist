@@ -26,7 +26,7 @@ class Controller
        return new $model($this->db);
     }
     
-    public function render($view, $data = []){
+    public function render($activeController, $activeControllerMethod, $view, $data = []){
         require APP . 'views/_shared/header.php';
         require APP . 'views/'.$view.'.php';
         require APP . 'views/_shared/footer.php';

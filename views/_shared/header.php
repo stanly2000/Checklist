@@ -53,3 +53,19 @@
 </div>
         
         <div class="container body-content">
+            
+            <div class="row">  
+<div class="span6">  
+<ul class="breadcrumb">  
+    <li>  
+    <a href="<?php echo RESOURCE ;?>/index.php">Home</a> <span class="divider"></span>  
+  </li> 
+  <li>  
+    <a href="<?php echo RESOURCE ;?>/<?php echo $activeController;?>"><?php echo $activeController;?></a> <span class="divider"></span>  
+  </li>  
+  <li>  
+    <?php  echo $activeControllerMethod;?> <span class="divider"></span>  
+  </li>  
+</ul>  
+</div>  
+</div> 
