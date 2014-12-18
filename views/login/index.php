@@ -7,7 +7,7 @@
         
         <section id="loginform">
             
-            <form action="index.php" class="form-horizontal" method="post" role="form"   >
+            <form action="<?php echo RESOURCE ;?>/login/loginPost" class="form-horizontal" method="post" role="form"   >
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Email">Email:</label>
                     <div class="col-md-10">
