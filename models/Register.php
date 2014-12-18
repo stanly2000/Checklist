@@ -20,9 +20,8 @@ class Register {
       
       $stmt = $this->dbh->prepare($query);
 
-      $stmt->execute(array(':FirstName' => $FirstName, 
-          ':LastName' => $LastName, ':Email' => $Email, ':Password' => $Password));
-      $affected_rows = $stmt->rowCount();
+      $stmt->execute(array($FirstName,$LastName,$Email, $Password));      
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
         catch (PDOException $e) 

@@ -1,6 +1,9 @@
   <!-- page content -->
-<form class="form-horizontal">
-  <fieldset>
+<form action="<?php echo RESOURCE ;?>/register/register" method="post" role="form" class="form-horizontal">
+   <input type="hidden" name="cntr" value="<?php echo $activeController;?>" >
+          <input type="hidden" name="actn" value="<?php echo $callbackMethod;?>" >
+         
+    <fieldset>
     <legend>Register</legend>
             <hr />
         <div class="form-group">
@@ -13,25 +16,25 @@
         <div class="form-group">
             <label for="Email" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="Email" placeholder="Email">
+            <input type="text" class="form-control" name="Email" id="Email" placeholder="Email">
         </div>
         </div>
         <div class="form-group">
             <label for="FirstName" class="col-lg-2 control-label">First Name</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="FirstName" placeholder="FirstName">
+            <input type="text" class="form-control" name="FirstName" id="FirstName" placeholder="FirstName">
         </div>
         </div>
         <div class="form-group">
             <label for="LastName" class="col-lg-2 control-label">Last Name</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="LastName" placeholder="LastName">
+            <input type="text" class="form-control" name="LastName" id="LastName" placeholder="LastName">
         </div>
         </div>
         <div class="form-group">
             <label for="Password" class="col-lg-2 control-label">Password</label>
         <div class="col-lg-10">
-                <input type="password" class="form-control" id="Password" placeholder="Password">
+                <input type="password" name="Password" class="form-control" id="Password" placeholder="Password">
         </div>
         </div>
 
