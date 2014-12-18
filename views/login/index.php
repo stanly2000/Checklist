@@ -18,7 +18,7 @@
                  <div class="form-group">
                     <label class="col-md-2 control-label" for="Password">Password:</label>
                     <div class="col-md-10">
-                        <input class="form-control" data-val="true" data-val-required="The password field is required." id="Email" name="Password" type="password" />
+                        <input class="form-control" data-val="true" data-val-required="The password field is required." id="Password" name="Password" type="password" />
                         <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
                     </div>
                 </div>
