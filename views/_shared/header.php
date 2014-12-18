@@ -4,7 +4,8 @@
         <link rel="icon"  type="image/png" href="<?php echo RESOURCE ;?>/img/logov128.png" />
          <title>CheckList APP</title>
         <link href="<?php echo RESOURCE ;?>/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo RESOURCE ;?>/css/Site.php" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo RESOURCE ;?>/css/Site.css" rel="stylesheet" type="text/css"/>
+        <script src="<?php echo RESOURCE ;?>/js/jquery-1.11.2.min.js" type="text/javascript"></script>
     </head>
    
     <body>

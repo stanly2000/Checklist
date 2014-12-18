@@ -18,7 +18,7 @@
            <td><?php echo $clist->ChecklistName; ?></td>
            <td><a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $clist->ChecklistID ?>" >view</a>&nbsp;
            <a href="<?php echo RESOURCE; ?>/checklist/update/<?php echo $clist->ChecklistID ?>" >update</a>&nbsp;
-           <a href="#" >delete</a></td>
+           <a href="#" class='delLink' >delete</a></td>
        </tr>
      <?php } ?>
             </tbody>
@@ -31,3 +31,4 @@
           <input type="hidden" name="actn" value="rmPost" >
       </form>
 </div>
+
