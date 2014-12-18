@@ -11,13 +11,24 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-        <td>example</td>
-       <td>example</td>
-       <td>example</td>
-        <td>example</td>
-         <td>example</td>
-          <td>example</td>
+     <tr class="info">
+      
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+    </tr>
+    <tr class="success">
+   
+     <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      <td>sample</td>
+      
     </tr>
   </tbody>
 </table>
