@@ -22,11 +22,14 @@
                         <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
                     </div>
                 </div>
+                </br>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log In" class="btn btn-default" />
                     </div>
                 </div>
+                </br>
+                <a href="forgotpassword.php">Forgot Password<a/>&nbsp;|  |&nbsp;<a href="register.php">Create New Account</a>
             </form>              
         </section>
     </div>
