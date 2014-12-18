@@ -13,6 +13,7 @@
  */
 class LoginController {
     public function index() {
-        require APP . '';
+        
+        $this->render(str_replace('Controller', '', __CLASS__),__FUNCTION__,'login/index');
     }
 }
