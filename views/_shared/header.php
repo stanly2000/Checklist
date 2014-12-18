@@ -1,4 +1,12 @@
-<?php include("../public/css/Site.php")?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <link rel="icon"  type="image/png" href="<?php echo RESOURCE ;?>/img/logov128.png" />
+         <title>CheckList APP</title>
+        <link href="<?php echo RESOURCE ;?>/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </head>
+   
+    <body>
 <div class="navbar navbar-inverse">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
@@ -43,3 +51,5 @@
     </ul>
   </div>
 </div>
+        
+        <div class="container body-content">
