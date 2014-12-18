@@ -14,11 +14,7 @@ class HomeController extends Controller
 
     public function test()
     {
-//        require APP . 'views/_shared/header.php';
-//        $model = new HomeTest();
-//        $data = $model->getAllUsers($this->db);
-//        require APP . 'views/home/test.php';
-//        require APP . 'views/_shared/footer.php';
+
          $model = $this->model('User');
          $users = $model->getAll();
          $this->render( __CLASS__,__FUNCTION__,'home/test',['users'=>$users ]);

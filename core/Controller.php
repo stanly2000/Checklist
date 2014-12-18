@@ -29,7 +29,6 @@ class Controller
     public function render($activeController, $activeControllerMethod, $view, $data = [],$callbackMethod = null){
         
         $activeController = strtolower(str_replace('Controller', '', $activeController));
-        echo $view;
         require APP . 'views/_shared/header.php';
         require APP . 'views/'.$view.'.php';
         require APP . 'views/_shared/footer.php';
