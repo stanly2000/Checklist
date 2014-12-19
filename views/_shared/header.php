@@ -59,11 +59,6 @@
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
-      <form class="navbar-form navbar-left">
-          <div id="UserProfile">
-              Hello: Jeffrey
-          </div>
-      </form>
     <ul class="nav navbar-nav navbar-right">
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/home/">Log out</a></li>
