@@ -1,5 +1,6 @@
 <?php
 require_once ROOT.'/utilities/Validation.php';
+require_once ROOT.'/utilities/DebugLogger.php';
 
 class RegisterController extends Controller
 {
@@ -16,7 +17,7 @@ class RegisterController extends Controller
     
     public function RegisterPost()
     {         
-
+DebugLogger::log('postRegister');
         $validator = new Validation();
 
         $fields = ['FirstName'=>$_POST['FirstName'], 'LastName'=>$_POST['LastName'],
@@ -27,6 +28,7 @@ class RegisterController extends Controller
          
         if($validator->validate($fields, $validationRules))
         {
+            DebugLogger::log('valid = true');
            $model = $this->model('Register');
             $params['FirstName'] = $_POST['FirstName'];
              $params['LastName'] = $_POST['LastName'];
