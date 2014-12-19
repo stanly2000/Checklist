@@ -7,8 +7,25 @@
         <link href="<?php echo RESOURCE ;?>/css/Site.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo RESOURCE ;?>/css/custom.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo RESOURCE ;?>/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var data = "<?php echo $_SESSION['SecurityLevel'] ?>";
+                $('#Loginbtn').hide();
+                $('#Logoutbtn').hide();
+            if (data != "") {
+                $('#Loginbtn').hide();
+                $('#Logoutbtn').show();
+            }
+            else{
+                $('#Loginbtn').show();
+                $('#Logoutbtn').hide();
+            }
+            $('#Logoutbtn').click(function(){
+                <?php $_SESSION['SecurityLevel'] = NULL; ?>
+            });
+        });
+        </script>
     </head>
-   
     <body>
 <div class="navbar navbar-inverse">
   <div class="navbar-header">
@@ -36,7 +53,8 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="<?php echo RESOURCE ;?>/login/index">Login</a></li>
+        <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
+        <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/home/">Log out</a></li>
       <li class="dropdown">
         <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
         <ul class="dropdown-menu">

@@ -1,4 +1,4 @@
-<?php 
+<?php
 ?>
 <h2> Login </h2>
 <div class="row">
