@@ -282,12 +282,14 @@ AssignTime    datetime
  -- this procedure shows or displays all checklists with each of their specific tasks
  DELIMITER //
  CREATE PROCEDURE spGetChecklistWithTasks(
+ p_ChecklistID int
  )
     begin
          select tbChecklist.ChecklistID, ChecklistName, 
                 TaskID, TaskName, TaskTime
          from   tbChecklist, tbTask
-         where  tbChecklist.ChecklistID = tbTask.ChecklistID;		
+         where  tbChecklist.CheclistID = p_ChecklistID and
+                tbChecklist.ChecklistID = tbTask.ChecklistID;		
   END //
  DELIMITER ;
  
