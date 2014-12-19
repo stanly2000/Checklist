@@ -1,4 +1,5 @@
 <?php
+session_start();
 class LoginController extends Controller {
     
     public function index() {
@@ -9,16 +10,20 @@ class LoginController extends Controller {
     
         public function loginPost () {
             $model = $this->model('Login');
-            $db = $model->get($_POST['Email'], $_POST['Password']);
-            if ($db == null) {
-                        echo 'no User';
+            $stmt = $model->loginCheck($_POST['Email'], $_POST['Password']);
+            if ($stmt == null) {
+                
+                //TODO create session
+                //CRESTE INSTANCE LoggedUser Class
+                // PUT this class to session 
+                
+                
+                $this->redirect('login/index');
             }
             else{
-                foreach($db as $rows)
+                foreach($stmt as $rows)
                 {
-                    echo 'User Logged in';
-                    echo '<br/>';
-                    echo $rows['UserID'];
+                    $this->redirect('home');
                 }
             }
     }

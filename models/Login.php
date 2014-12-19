@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Login {
     
     private $db;
@@ -12,9 +12,18 @@ class Login {
         $this->db = $db;
     }
     
-    public function get($_username, $_password) {
-$stmt = $this->db->prepare("CALL spLogin(?,?)");
-$stmt->execute(array($_username, $_password));
-return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function loginCheck($_username, $_password) {
+        $stmt = $this->db->prepare("CALL spLogin(?,?)");
+        $stmt->execute(array($_username, $_password));
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($results == null) {
+            return null;
+        }
+        else{
+            foreach($results as $rows){
+                $rows['UserID'] = $_SESSION['UserID'];
+            }
+            return $results;
+        }
     }
 }
