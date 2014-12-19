@@ -13,7 +13,7 @@ class Validation {
        return $this->ErrorsList;
 }
     /// IMPORTANT !!!
-    /// the arrays should be in made bu this example
+    /// the arrays should be made by this example
     ///  $fields = ['FirstName'=>$_POST['FirstName'], 'LastName'=>$_POST['LastName'];
     ///  $rules = ['FirstName'=>['notEmpty','lettersAndNumbers'],'LastName'=>['notEmpty','lettersAndNumbers']];
    public function validate($fields = [], $rulesArray = []){      
@@ -33,7 +33,7 @@ class Validation {
    
    public function email($fieldName, $value){
        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-           array_push($this->ErrorsList, ' invalid email.');
+           array_push($this->ErrorsList, ' Invalid email.');
        }
    }
    
@@ -51,7 +51,7 @@ class Validation {
    
   public function lettersAndNumbers($fieldName, $value){
       if (preg_match('/[^A-Za-z 0-9]/', $value)) {
-      array_push($this->ErrorsList, $fieldName.' only letters and numbers allowed.');
+      array_push($this->ErrorsList, $fieldName.' only letters, numbers and spaces are allowed .');
       }
   }
 }

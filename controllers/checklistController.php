@@ -1,10 +1,13 @@
 <?php
 require_once ROOT.'/utilities/Validation.php';
+require_once ROOT.'/utilities/DebugLogger.php';
 class ChecklistController extends Controller
 {
     public function index()
     {
-        
+       
+        $arrr = ['asas'=>111,'ww'=>'ooo'];
+        DebugLogger::logAr($_GET);
          $model = $this->model('Checklist');
          $checklists = $model->getAll();
          $this->render( __CLASS__,__FUNCTION__,'checklist/index',['checklists'=>$checklists ]);
@@ -32,7 +35,7 @@ class ChecklistController extends Controller
     
     public function addPost()
     {
-       // $model = $this->model('Checklist');$model->validationRules
+       // $model = $this->model('Checklist');$model->validationRules    
         $validator = new Validation();
         $title = htmlspecialchars(trim($_POST['title']));
         $id = '100aa';
