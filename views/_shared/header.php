@@ -61,7 +61,7 @@
     </form>
     <ul class="nav navbar-nav navbar-right">
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
-        <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/home/">Log out</a></li>
+        <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/index">Log out</a></li>
         <li id="UserManager" class="dropdown">
         <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
         <ul class="dropdown-menu">
