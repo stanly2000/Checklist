@@ -1,4 +1,6 @@
 <?php
+require_once ROOT.'/utilities/Validation.php';
+
 class RegisterController extends Controller
 {
  
@@ -14,7 +16,16 @@ class RegisterController extends Controller
     
     public function RegisterPost()
     {         
-        print_r($_POST);
+       // print_r($_POST);
+        
+        $validator = new Validation();
+        
+        $fields[] = ['FirstName'=>$_POST['FirstName'], 'LastName'=>$_POST['LastName'],
+                   'Email'=>$_POST['Email'], 'Password'=>$_POST['Password']];
+        $rules[] = ['FirstName'=>['notEmpty'], 'LastName'=>['notEmpty'],
+                  'Email'=>['notEmpty'], 'Password'=>['notEmpty'] ];
+        if($validator->validate($fields, $rules))
+        {
            $model = $this->model('Register');
             $params['FirstName'] = $_POST['FirstName'];
              $params['LastName'] = $_POST['LastName'];
@@ -22,7 +33,7 @@ class RegisterController extends Controller
                $params['Password'] = $_POST['Password'];
             $model->RegisterUser($params);
                $this->redirect(__CLASS__);
-                          
+        }
                
           //  $this->redirect(login/index);
         
