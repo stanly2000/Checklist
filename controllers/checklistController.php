@@ -43,10 +43,17 @@ class ChecklistController extends Controller
         $fields = ['title'=>$title, 'id'=>$dummyInt];
 
         if($validator->validate($fields, $model->validationRules)){
-            $params['title'] = $title;
-            $model->add($params);
+            //$params['title'] = $title;
+           // $model->add($params);
+            $model->ChecklistName = $title;
+            if ($model->save())
             $_SESSION['afterActionMessage'] = "Action Successfully Completed";
+            else 
+            $_SESSION['afterActionMessage'] = "Action failded, DB Problem.."; 
+        
+           
         $this->redirect(__CLASS__);
+            
         }
         else{
             $_SESSION['validationErrors'] = $validator->getErrors();
@@ -56,18 +63,16 @@ class ChecklistController extends Controller
     
     public function update($id=null)
     {
+       // $id = htmlspecialchars(trim($_POST['id']));
         $model = $this->model('Checklist');
-
-       
-        $existChecklist = null;
-        if ($id)
-        {
-            $existChecklist = $model->get($id);
-        }
-        
+       if ($model->load($id)){
+     //   $model->load($id);
         $this->render(__CLASS__,__FUNCTION__,
                 'checklist/update',
-    ['checklist'=>$existChecklist ],'updatePost' );  
+    ['checklist'=>$model ],'updatePost' ); 
+        }
+        else 
+        $this->redirect(__CLASS__);
     }
     
     public function rmPost()
@@ -84,18 +89,22 @@ class ChecklistController extends Controller
     
     public function updatePost()
     {
+        $id = htmlspecialchars(trim($_POST['id']));
+        
         $model = $this->model('Checklist');
-  
+        $model->load($id);
+        
         $validator = new Validation();
         $title = htmlspecialchars(trim($_POST['title']));
-        $id = htmlspecialchars(trim($_POST['id']));
+        
         $fields = ['title'=>$title, 'id'=>$id];
 
         if($validator->validate($fields, $model->validationRules)){
-            $params['title'] = $title;
-            $params['id'] = $id;
-            $model->update($params);
+            $model->ChecklistName = $title;
+            if($model->save())
             $_SESSION['afterActionMessage'] = "Action Successfully Completed";
+            else
+               $_SESSION['afterActionMessage'] = "Action failded, DB Problem.."; 
         $this->redirect(__CLASS__);
         }
         else{
