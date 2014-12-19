@@ -40,10 +40,11 @@ class ChecklistController extends Controller
         $model = $this->model('Checklist');
             $params['title'] = $_POST['title'];
             $model->add($params);
+            $_SESSION['afterActionMessage'] = "Action Successfully Completed";
         $this->redirect(__CLASS__);
         }
         else{
-           
+            $_SESSION['validationErrors'] = $validator->getErrors();
             $this->redirect(__CLASS__, 'add');
         }
     }

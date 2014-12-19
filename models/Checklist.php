@@ -23,13 +23,12 @@ class Checklist {
     }
     public function update($params = [])
     {
-
         try{
     $stmt = $this->db->prepare("CALL spUpdateChecklist (?,? ) ");
     $stmt->execute(array( $params['id'],$params['title']));
         }
         catch(PDOException $ex) {
-    echo "An Error occured!"; //user friendly message
+    echo "An Error occured!"; 
     echo $ex->getMessage();
     }
 

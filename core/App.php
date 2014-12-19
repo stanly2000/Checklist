@@ -12,8 +12,10 @@ class App
     public function __construct()
     {
         //echo "APP CONSTRUCT<br>";
-        echo "<br>".$this->url_controller;
-        echo "<br>".$this->url_action;
+        //echo "<br>".$this->url_controller;
+        //echo "<br>".$this->url_action;
+        
+        session_start();
      
         $this->splitUrl();
        // $this->validateRouterParams();

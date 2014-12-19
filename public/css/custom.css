@@ -9,4 +9,10 @@
 .font20{
     font-size: 20px;
 }
+.afterActionMessageBox{
+    background-color: blue;
+}
+.validationErrorsBox{
+    background-color: red;
+}
 

@@ -44,4 +44,8 @@ class Validation {
            array_push($this->ErrorsList, $fieldName.' has to be a number.');
        }
    }
+   
+   public static function sanitizeString($mode = 1){
+       
+   } 
 }
