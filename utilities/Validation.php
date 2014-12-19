@@ -11,6 +11,7 @@ class Validation {
    public function getErrors(){
        return $this->ErrorsList;
 }
+    //
    // rules 'FirstName'=>['notEmpty','string'], '
    public function validate($fields = [], $rulesArray = []){
        foreach ($rulesArray as $param => $ruleList){
@@ -23,7 +24,7 @@ class Validation {
    
    public function notEmpty($fieldName, $value){
       if ($value == null){
-          array_push($this->ErrorsList, $fieldName. ' have to be filled.');
+          array_push($this->ErrorsList, $fieldName. ' has to be filled.');
       }
    }
    
@@ -45,7 +46,9 @@ class Validation {
        }
    }
    
-   public static function sanitizeString($mode = 1){
-       
-   } 
+  public function lettersAndNumbers($fieldName, $value){
+      if (preg_match('/[^A-Za-z 0-9]/', $value)) {
+      array_push($this->ErrorsList, $fieldName.' only letters and numbers allowed.');
+      }
+  }
 }
