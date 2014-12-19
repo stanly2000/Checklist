@@ -60,6 +60,9 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
+        <?php if ($_SESSION['SecurityLevel'] != null) {?>
+        <li><a href="<?php echo RESOURCE ;?>/home">Hello <?php echo $_SESSION['Email']; ?></a></li>
+        <?php }?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/index">Log out</a></li>
         <li id="UserManager" class="dropdown">

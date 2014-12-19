@@ -18,13 +18,12 @@ class LoginController extends Controller {
                 {
                     $_SESSION['UserID'] = $rows['UserID'];
                     $_SESSION['SecurityLevel'] = $rows['SecurityLevel'];
-                    echo 'im here';
+                    $_SESSION['Email'] = $rows['Email'];
                 }
-//                $this->redirect('home');
+                $this->redirect('home');
             }
             else{
-//                $this->redirect('login/index');
-                echo 'im not here';
+                $this->redirect('login/index');
             }
             die();
     }
