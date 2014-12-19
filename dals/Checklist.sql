@@ -293,6 +293,14 @@ AssignTime    datetime
  
  -- CRUD for tbTask
  DELIMITER //
+ CREATE PROCEDURE spGetTasks(
+ )
+    begin
+         select * from tbTask;		 		
+  END //
+ DELIMITER ;
+
+ DELIMITER //
  CREATE PROCEDURE spInsertTask(
  p_TaskName varchar(60),
  p_ChecklistID int,
