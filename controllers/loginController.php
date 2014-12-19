@@ -1,5 +1,4 @@
 <?php
-session_start();
 class LoginController extends Controller {
     
     public function index() {
@@ -11,20 +10,19 @@ class LoginController extends Controller {
         public function loginPost () {
             $model = $this->model('Login');
             $stmt = $model->loginCheck($_POST['Email'], $_POST['Password']);
-            if ($stmt == null) {
-                
+            if ($stmt != null) {
                 //TODO create session
                 //CRESTE INSTANCE LoggedUser Class
                 // PUT this class to session 
-                
-                
-                $this->redirect('login/index');
-            }
-            else{
                 foreach($stmt as $rows)
                 {
-                    $this->redirect('home');
+                    $_SESSION['UserID'] = $rows['UserID'];
+                    $_SESSION['SecurityLevel'] = $rows['SecurityLevel'];
                 }
+                $this->redirect('home');
+            }
+            else{
+                $this->redirect('login/index');
             }
     }
 }

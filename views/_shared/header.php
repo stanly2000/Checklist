@@ -12,9 +12,16 @@
             var data = "<?php echo $_SESSION['SecurityLevel'] ?>";
                 $('#Loginbtn').hide();
                 $('#Logoutbtn').hide();
+                $('#UserManager').hide();
             if (data != "") {
                 $('#Loginbtn').hide();
                 $('#Logoutbtn').show();
+                if (data >= 2) {
+                    $('#UserManager').show();
+                }
+                else{
+                    $('#UserManager').hide();
+                }
             }
             else{
                 $('#Loginbtn').show();
@@ -52,10 +59,15 @@
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
+      <form class="navbar-form navbar-left">
+          <div id="UserProfile">
+              Hello: Jeffrey
+          </div>
+      </form>
     <ul class="nav navbar-nav navbar-right">
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/home/">Log out</a></li>
-      <li class="dropdown">
+        <li id="UserManager" class="dropdown">
         <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo RESOURCE ;?>/users/">View All Users</a></li>
