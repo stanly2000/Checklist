@@ -4,6 +4,7 @@ class Checklist {
     private $db;
     public $ChecklistID;
     public $ChecklistName;
+    public $validationRules = ['title'=>['notEmpty','lettersAndNumbers']];
     
     function __construct($db) {
         $this->db = $db;

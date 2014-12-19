@@ -5,15 +5,18 @@
  *
  * @author Stan
  */
+require_once 'DebugLogger.php';
 class Validation {
    private $ErrorsList = [];
    
    public function getErrors(){
        return $this->ErrorsList;
 }
-    //
-   // rules 'FirstName'=>['notEmpty','string'], '
-   public function validate($fields = [], $rulesArray = []){
+    /// IMPORTANT !!!
+    /// the arrays should be in made bu this example
+    ///  $fields = ['FirstName'=>$_POST['FirstName'], 'LastName'=>$_POST['LastName'];
+    ///  $rules = ['FirstName'=>['notEmpty','lettersAndNumbers'],'LastName'=>['notEmpty','lettersAndNumbers']];
+   public function validate($fields = [], $rulesArray = []){      
        foreach ($rulesArray as $param => $ruleList){
            foreach($ruleList as $rule){
                $this->$rule($param, $fields[$param]);
