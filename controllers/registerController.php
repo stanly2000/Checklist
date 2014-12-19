@@ -33,7 +33,9 @@ class RegisterController extends Controller
               $params['Email'] = $_POST['Email'];
                $params['Password'] = $_POST['Password'];
             $model->RegisterUser($params);
-               $this->redirect(__CLASS__);
+            
+                $_SESSION['afterActionMessage'] = "New User Registered Successfully!";
+        $this->redirect(__CLASS__,'Register');
         }
  else {
       $_SESSION['validationErrors'] = $validator->getErrors();
