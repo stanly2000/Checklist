@@ -36,10 +36,11 @@ class ChecklistController extends Controller
     public function addPost()
     {
         $model = $this->model('Checklist');
-  
+        // adding this for using general model validation rules
+        $dummyInt = 1;
         $validator = new Validation();
         $title = htmlspecialchars(trim($_POST['title']));
-        $fields = ['title'=>$title];
+        $fields = ['title'=>$title, 'id'=>$dummyInt];
 
         if($validator->validate($fields, $model->validationRules)){
             $params['title'] = $title;
@@ -71,10 +72,12 @@ class ChecklistController extends Controller
     
     public function rmPost()
     {
-        if (isset($_POST['id'])){
+        $id = htmlspecialchars(trim($_POST['id']));
+        if (isset($id)){
             $model = $this->model('Checklist');
-            $params['id'] = $_POST['id'];
+            $params['id'] = $id;
             $model->remove($params);
+            $_SESSION['afterActionMessage'] = "Action Successfully Completed";
         }
         $this->redirect(__CLASS__);
     }
@@ -82,10 +85,23 @@ class ChecklistController extends Controller
     public function updatePost()
     {
         $model = $this->model('Checklist');
-            $params['title'] = $_POST['title'];
-            $params['id'] = $_POST['id'];
+  
+        $validator = new Validation();
+        $title = htmlspecialchars(trim($_POST['title']));
+        $id = htmlspecialchars(trim($_POST['id']));
+        $fields = ['title'=>$title, 'id'=>$id];
+
+        if($validator->validate($fields, $model->validationRules)){
+            $params['title'] = $title;
+            $params['id'] = $id;
             $model->update($params);
+            $_SESSION['afterActionMessage'] = "Action Successfully Completed";
         $this->redirect(__CLASS__);
+        }
+        else{
+            $_SESSION['validationErrors'] = $validator->getErrors();
+            $this->redirect(__CLASS__, 'update', [$id]);
+        }
     }
     
 }

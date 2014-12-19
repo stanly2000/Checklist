@@ -12,7 +12,7 @@
   </div>
 
   <button type="submit" class="btn btn-default">Add New</button>
-  &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default">Cancel</button>
+  &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default btnCancel">Cancel</button>
 </form>
   </div>      
   <div class="col-lg-3">&nbsp;</div>

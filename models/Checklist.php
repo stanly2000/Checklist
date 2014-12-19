@@ -8,7 +8,8 @@ class Checklist {
     
     function __construct($db) {
         $this->db = $db;
-        $this->validationRules = ['title'=>['notEmpty','lettersAndNumbers']];
+        $this->validationRules = ['title'=>['notEmpty','lettersAndNumbers'],
+            'id'=>['notEmpty','isInteger']];
     }
     
     public function get( $id)

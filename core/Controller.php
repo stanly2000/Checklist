@@ -36,7 +36,17 @@ class Controller
     
     public function redirect($Controller, $ControllerMethod = null, $params = []){
         $Controller = strtolower(str_replace('Controller', '', $Controller));
-        header('Location: '.RESOURCE.'/'.$Controller.'/'.$ControllerMethod);
+        header('Location: '.RESOURCE.'/'.$Controller.'/'.$ControllerMethod.'/'.$this->builParams($params));
         exit;
+    }
+    
+    private function builParams($params = []){
+        $param_str = "";
+        if (count($params) > 0){
+            foreach ($params as $val) {
+                $param_str .= $val.'/';
+            }
+        }
+        return trim($param_str);
     }
 }
