@@ -1,6 +1,7 @@
 <?php
-
-class Checklist {
+require_once 'IDbModels.php';
+require_once '../utilities/DebugLogger.php';
+class Checklist implements IDbModels{
     private $db;
     public $ChecklistID;
     public $ChecklistName;
@@ -25,6 +26,18 @@ class Checklist {
             return true;
     }
     
+    public function getTasks(){
+        try{
+        $stmt = $this->db->prepare("SELECT * FROM tbTask WHERE ChecklistID=?");
+        $stmt->execute(array($this->ChecklistID));
+        $this->Tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return true;
+        }
+        catch (PDOException $ex){ 
+            return false;
+        }
+    }
+    
     public function get( $id)
     {       
         $stmt = $this->db->prepare("SELECT * FROM tbChecklist WHERE ChecklistID=?");
@@ -37,30 +50,18 @@ class Checklist {
         $stmt->execute();
         return   $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-//    public function update($params = [])
-//    {
-//        try{
-//    $stmt = $this->db->prepare("CALL spUpdateChecklist (?,? ) ");
-//    $stmt->execute(array( $params['id'],$params['title']));
-//        }
-//        catch(PDOException $ex) {
-//    echo "An Error occured!"; 
-//    echo $ex->getMessage();
-//    die();
-//    }
-//
-//    }
-//    public function add($params = [])
-//    {
-//    $stmt = $this->db->prepare("CALL spInsertChecklist (:p_ChecklistName) ");
-//    $stmt->bindValue(':p_ChecklistName', $params['title'], PDO::PARAM_STR);
-//    $stmt->execute();
-//    }
-    public function remove($params = [])
+
+    public function remove($id)//$params = [])
     {
+        try{
     $stmt = $this->db->prepare("CALL spDeleteChecklist (:p_ChecklistID)");
-    $stmt->bindValue(':p_ChecklistID', $params['id'], PDO::PARAM_INT);
+    $stmt->bindValue(':p_ChecklistID', $id, PDO::PARAM_INT);
     $stmt->execute();
+    return true;
+        }
+        catch (PDOException $ex){ 
+            return false;
+        }
     }
     //TODO save model to db
     public function save(){

@@ -5,9 +5,6 @@ class ChecklistController extends Controller
 {
     public function index()
     {
-       
-        $arrr = ['asas'=>111,'ww'=>'ooo'];
-        DebugLogger::logAr($_GET);
          $model = $this->model('Checklist');
          $checklists = $model->getAll();
          $this->render( __CLASS__,__FUNCTION__,'checklist/index',['checklists'=>$checklists ]);
@@ -16,15 +13,28 @@ class ChecklistController extends Controller
 
     public function view($id)
     {
-
        $model = $this->model('Checklist');
-        $existChecklist = null;
-        if ($id)
-        {
-            $existChecklist = $model->get($id);
+        if ($model->load($id)){
+            if(!$model->getTasks())
+            {
+                echo "AAAAAAAAAAAAAAA";die();
+            }
+        $this->render(__CLASS__,__FUNCTION__,
+                'checklist/view',
+    ['checklist'=>$model ],'updatePost' ); 
+            
         }
+        else 
+        $this->redirect(__CLASS__);
         
-        $this->render( __CLASS__,__FUNCTION__,'checklist/view',['checklist'=>$existChecklist ]);
+//       $model = $this->model('Checklist');
+//        $existChecklist = null;
+//        if ($id)
+//        {
+//            $existChecklist = $model->get($id);
+//        }
+//        
+//        $this->render( __CLASS__,__FUNCTION__,'checklist/view',['checklist'=>$existChecklist ]);
         
     }
     
@@ -43,8 +53,7 @@ class ChecklistController extends Controller
         $fields = ['title'=>$title, 'id'=>$dummyInt];
 
         if($validator->validate($fields, $model->validationRules)){
-            //$params['title'] = $title;
-           // $model->add($params);
+
             $model->ChecklistName = $title;
             if ($model->save())
             $_SESSION['afterActionMessage'] = "Action Successfully Completed";
@@ -63,10 +72,9 @@ class ChecklistController extends Controller
     
     public function update($id=null)
     {
-       // $id = htmlspecialchars(trim($_POST['id']));
         $model = $this->model('Checklist');
        if ($model->load($id)){
-     //   $model->load($id);
+
         $this->render(__CLASS__,__FUNCTION__,
                 'checklist/update',
     ['checklist'=>$model ],'updatePost' ); 
@@ -80,9 +88,10 @@ class ChecklistController extends Controller
         $id = htmlspecialchars(trim($_POST['id']));
         if (isset($id)){
             $model = $this->model('Checklist');
-            $params['id'] = $id;
-            $model->remove($params);
+            if($model->remove($id))
             $_SESSION['afterActionMessage'] = "Action Successfully Completed";
+            else
+             $_SESSION['afterActionMessage'] = "Action failded, DB Problem..";    
         }
         $this->redirect(__CLASS__);
     }
