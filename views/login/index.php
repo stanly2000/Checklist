@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 </br>
-                <a href="forgotpassword.php">Forgot Password<a/>&nbsp;|  |&nbsp;<a href="register.php">Create New Account</a>
+                <a href="<?php echo RESOURCE ;?>/login/forgotpassword">Forgot Password<a/>&nbsp;|  |&nbsp;<a href="<?php echo RESOURCE ;?>/register/register">Create New Account</a>
             </form>              
         </section>
     </div>

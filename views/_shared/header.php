@@ -35,7 +35,7 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="<?php echo RESOURCE ;?>/login/index.php">Login</a></li>
+      <li><a href="<?php echo RESOURCE ;?>/login/index">Login</a></li>
       <li class="dropdown">
         <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
         <ul class="dropdown-menu">
