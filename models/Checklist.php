@@ -4,10 +4,11 @@ class Checklist {
     private $db;
     public $ChecklistID;
     public $ChecklistName;
-    public $validationRules = ['title'=>['notEmpty','lettersAndNumbers']];
+    public $validationRules = []; 
     
     function __construct($db) {
         $this->db = $db;
+        $this->validationRules = ['title'=>['notEmpty','lettersAndNumbers']];
     }
     
     public function get( $id)

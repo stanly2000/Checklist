@@ -35,14 +35,13 @@ class ChecklistController extends Controller
     
     public function addPost()
     {
-       // $model = $this->model('Checklist');$model->validationRules    
+        $model = $this->model('Checklist');
+  
         $validator = new Validation();
         $title = htmlspecialchars(trim($_POST['title']));
-        $id = '100aa';
-        $fields = ['title'=>$title,'id'=>$id];
-        $validationRules = ['title'=>['notEmpty','lettersAndNumbers'],'id'=>['notEmpty','isInteger']];
-        if($validator->validate($fields, $validationRules)){
-        $model = $this->model('Checklist');
+        $fields = ['title'=>$title];
+
+        if($validator->validate($fields, $model->validationRules)){
             $params['title'] = $title;
             $model->add($params);
             $_SESSION['afterActionMessage'] = "Action Successfully Completed";
