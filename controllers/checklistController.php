@@ -1,4 +1,5 @@
 <?php
+require_once ROOT.'/utilities/Validation.php';
 class ChecklistController extends Controller
 {
     public function index()
@@ -31,10 +32,20 @@ class ChecklistController extends Controller
     
     public function addPost()
     {
+        $validator = new Validation();
+        
+        $fields = ['title'=>$_POST['title']];
+        $rules = ['title'=>['notEmpty']];
+        if($validator->validate($fields, $rules)){
         $model = $this->model('Checklist');
             $params['title'] = $_POST['title'];
             $model->add($params);
         $this->redirect(__CLASS__);
+        }
+        else{
+           
+            $this->redirect(__CLASS__, 'add');
+        }
     }
     
     public function update($id=null)
