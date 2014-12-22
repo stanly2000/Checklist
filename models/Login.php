@@ -17,9 +17,10 @@ class Login {
         if (Hash::genHash($_password,$results['Salt']) === $results['Password']){
         return $results;
         }
-        else {          
-        return null;}
-
+        else {   
+        return null;
+        
+        }
     }
 
 }

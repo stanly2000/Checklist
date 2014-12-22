@@ -102,13 +102,11 @@ AssignTime    datetime
 
  DELIMITER //
  CREATE PROCEDURE spLogin(
- p_Email         varchar(20),
- p_Password      varchar(20)
+ p_Email         varchar(20)
  )
    BEGIN
    select * from tbUser 
-   where Email    = p_Email and
-		 Password = p_Password;
+   where Email    = p_Email
    END //
  DELIMITER ;
  
