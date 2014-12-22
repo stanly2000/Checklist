@@ -131,7 +131,7 @@ AssignTime    datetime
    BEGIN
    insert into tbUser 
    (FirstName, LastName, Email, Password, Salt, SecurityLevel) values
-   (p_FirstName, p_LastName, p_Email, p_Salt, p_Password, 1);
+   (p_FirstName, p_LastName, p_Email,  p_Password, p_Salt, 1);
 -- security level for every new user registration will be 1 by default
 -- but it can be changed by admin in update stored procedure
    END //
