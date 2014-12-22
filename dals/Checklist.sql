@@ -390,7 +390,7 @@ AssignTime    datetime
  DELIMITER //
  CREATE PROCEDURE spAssignChecklist(  
  p_GroupID int,
- p_ChecklistID int,tum apply
+ p_ChecklistID int,
  p_AssignTime int
  )
     begin
