@@ -34,10 +34,22 @@ DebugLogger::log('postRegister');
              $params['LastName'] = $_POST['LastName'];
               $params['Email'] = $_POST['Email'];
                $params['Password'] = $_POST['Password'];
+    
+               $model->CheckIfEmailExists($params['Email']);
+               
+               if($model->CheckIfEmailExists($params['Email']))
+               {
+                   $_SESSION['validationErrors'] =[ "Email Already Exists!"];
+                   $this->redirect(__CLASS__,'Register');
+               }
+               else
+               {
+               
             $model->RegisterUser($params);
             
                 $_SESSION['afterActionMessage'] = "New User Registered Successfully!";
         $this->redirect(__CLASS__,'Register');
+               }
         }
  else {
       $_SESSION['validationErrors'] = $validator->getErrors();
