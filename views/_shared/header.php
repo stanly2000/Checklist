@@ -58,11 +58,13 @@
     </form>
     <ul class="nav navbar-nav navbar-right">
         <?php 
+        if(!empty($_SESSION['SecurityLevel'])){
         if ($_SESSION['SecurityLevel']!=-1) {
             ?>
         <li><a>Hello&nbsp;<?php echo $_SESSION['FirstName'];?>!</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/logout">Log out</a></li>
-        <?php  }  ?>
+        <?php  }  
+        }  ?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
         <li id="UserManager" class="dropdown">
         <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>

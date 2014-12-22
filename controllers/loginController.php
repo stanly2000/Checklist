@@ -2,7 +2,7 @@
 class LoginController extends Controller {
     
     public function index() {
-        
+        $_SESSION['SecurityLevel'] = -1;
         $this->render(__CLASS__,__FUNCTION__,
                 'login/index',null,'loginPost' );
     }
