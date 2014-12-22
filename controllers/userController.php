@@ -8,7 +8,6 @@ class userController extends Controller
         $model=$this->model('User');
         $user = $model->getAll();
         $this->render( __CLASS__,__FUNCTION__,'user/index',['user'=>$user ]);
- 
     }
     
 
