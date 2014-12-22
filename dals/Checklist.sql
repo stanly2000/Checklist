@@ -113,6 +113,14 @@ AssignTime    datetime
  
 -- CRUD FOR tbUser --
  DELIMITER //
+ CREATE PROCEDURE spGetUsers(
+ )
+    begin
+         select * from tbUser;		 		
+  END //
+ DELIMITER ;
+
+ DELIMITER //
  CREATE PROCEDURE spInsertUser(
  p_FirstName     varchar(60),
  p_LastName      varchar(60),

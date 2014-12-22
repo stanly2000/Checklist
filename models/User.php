@@ -19,7 +19,7 @@ class User {
         $stmt->execute(array($id));
         return   $stmt->fetch(PDO::FETCH_OBJ);
     }
-    public function getAll( )
+    public function getAllUsers( )
     {       
         $stmt = $this->db->prepare("SELECT * FROM tbUser");
         $stmt->execute();

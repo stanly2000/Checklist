@@ -22,7 +22,8 @@ class Task {
         $stmt->execute();
         return   $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-        public function update($params = [])
+    
+    public function update($params = [])
     {
         try{
                $stmt = $this->db->prepare("CALL spUpdateTask (?,? ) ");
@@ -31,7 +32,7 @@ class Task {
         catch(PDOException $ex) {
                 echo "An Error occured!"; 
                 echo $ex->getMessage();
-    }
+        }
 
     }
     public function add($params = [])
