@@ -25,6 +25,5 @@ class LoginController extends Controller {
             else{
                 $this->redirect('login/index');
             }
-            die();
     }
 }
