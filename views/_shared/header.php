@@ -65,11 +65,7 @@
         <?php  }  ?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
         <li id="UserManager" class="dropdown">
-        <a href="<?php echo RESOURCE ;?>/users/" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo RESOURCE ;?>/users/">View All Users</a></li>
-          <li><a href="<?php echo RESOURCE ;?>/users/add.php">Add New User</a></li>
-        </ul>
+        <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
       </li>
     </ul>
   </div>

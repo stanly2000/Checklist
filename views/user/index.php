@@ -3,7 +3,7 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>UserID</th>
+            <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
