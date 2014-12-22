@@ -38,4 +38,17 @@ class User {
             echo $ex->getMessage();           
         }        
     }
+    
+     public function add($params = [])
+    {
+         $stmt = $this->db->prepare("CALL spInsertUser (:p_Email) ");
+         $stmt->bindValue(':p_Email', $params['email'], PDO::PARAM_STR);
+         $stmt->execute();
+    }
+    public function remove($params = [])
+    {
+         $stmt = $this->db->prepare("CALL spDeleteUser (:p_UserID)");
+         $stmt->bindValue(':p_UserID', $params['id'], PDO::PARAM_INT);
+         $stmt->execute();
+    }
 }
