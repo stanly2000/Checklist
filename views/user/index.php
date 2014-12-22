@@ -7,22 +7,22 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Security Level</th>
         </tr>
     </thead>
     <tbody>
      <?php foreach ($data['user'] as $userList)  { ?>
        <tr>
+           <td><?php echo $userList->UserID; ?></td>
+           <td><?php echo $userList->FirstName; ?></td>
+           <td><?php echo $userList->LastName; ?></td>
+           <td><?php echo $userList->Email; ?></td>
+           <td><?php echo $userList->SecurityLevel; ?></td>           
            <td>
-               <?php echo $userList->UserID; ?>
-           </td>
-           <td>
-               <?php echo $userList->FirstName; ?>
-           <td>
-           <a href="<?php echo RESOURCE; ?>/user/edit/<?php echo $userList->UserID ?>" >view</a> ||
-           <a href="<?php echo RESOURCE; ?>/user/update/<?php echo $userList->UserID ?>" >update</a> ||
-           <a href="<?php echo RESOURCE; ?>/user/delete/<?php echo $userList->UserID ?>" >delete</a>
+           <a href="<?php echo RESOURCE; ?>/user/edit/<?php echo $userList->UserID ?>" >View</a>||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/user/update/<?php echo $userList->UserID ?>" >Update</a>||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/user/delete/<?php echo $userList->UserID ?>" >Delete</a>
+
            </td>
        </tr>
      <?php } ?>
