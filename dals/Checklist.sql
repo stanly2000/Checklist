@@ -390,7 +390,7 @@ AssignTime    datetime
  DELIMITER //
  CREATE PROCEDURE spAssignChecklist(  
  p_GroupID int,
- p_ChecklistID int,
+ p_ChecklistID int,tum apply
  p_AssignTime int
  )
     begin
@@ -428,4 +428,22 @@ AssignTime    datetime
     END //
  DELIMITER ;
  
--- Stored Procedures to enter trigger logs in Log Tables --
+-- LOG Tables and Stored Procedures to enter trigger logs --
+
+create table log_tbUser(
+LogID             int primary key auto_increment,
+UserID            int unsigned not null,
+old_FirstName     varchar(60) null,
+new_FirstName     varchar(60) null,
+old_LastName      varchar(60) null,
+new_LastName      varchar(60) null,
+old_Email         varchar(60) null,
+new_Email         varchar(60) null,
+old_Password      varchar(128) null,
+new_Password      varchar(128) null,
+old_Salt          varchar(60) null,
+old_SecurityLevel int  null ,
+new_SecurityLevel int  null,
+ActionType ENUM   ('insert','update','delete') not null,
+Time              timestamp not null           
+);
