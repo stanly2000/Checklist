@@ -430,6 +430,7 @@ AssignTime    datetime
  
 -- LOG Tables and Stored Procedures to enter trigger logs --
 
+-- log table for tbUser 
 create table log_tbUser(
 LogID             int primary key auto_increment,
 UserID            int unsigned not null,
@@ -442,8 +443,28 @@ new_Email         varchar(60) null,
 old_Password      varchar(128) null,
 new_Password      varchar(128) null,
 old_Salt          varchar(60) null,
+new_Salt          varchar(60) null,
 old_SecurityLevel int  null ,
 new_SecurityLevel int  null,
-ActionType ENUM   ('insert','update','delete') not null,
-Time              timestamp not null           
+ActionType  ENUM  ('insert','update','delete') not null,
+TimeStamp         timestamp not null           
 );
+
+-- stored proc to insert into log_tbUser
+DELIMITER //
+DROP TRIGGER test.tbUser_insert//
+CREATE TRIGGER test.tbUser_insert
+       AFTER INSERT ON test.tbUser
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbUser
+              (UserID, old_FirstName, new_FirstName, old_LastName,
+               new_LastName, old_Email, new_Email, old_Password,
+               new_Password, old_Salt, new_Salt, old_SecurityLevel,
+               new_SecurityLevel, ActionType, TimeStamp) values
+
+              (new.UserID, null, new_FirstName, null,
+               new_LastName, null, new_Email, null,
+               new_Password, null, new_Salt, null,
+               new_SecurityLevel, 'insert', now());
+END//
