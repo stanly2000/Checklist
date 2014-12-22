@@ -60,7 +60,7 @@
         <?php 
         if ($_SESSION['SecurityLevel']!=-1) {
             ?>
-        <li><a><?php Hello: echo $_SESSION['FirstName']; ?></a></li>
+        <li><a>Hello &nbsp;<?php echo $_SESSION['FirstName']; ?></a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/logout">Log out</a></li>
         <?php   } ?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
