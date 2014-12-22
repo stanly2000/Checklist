@@ -106,7 +106,7 @@ AssignTime    datetime
  )
    BEGIN
    select * from tbUser 
-   where Email    = p_Email
+   where Email    = p_Email;
    END //
  DELIMITER ;
  
@@ -549,14 +549,6 @@ BEGIN
 END//
 DELIMITER ;
 
--- create table tbTask(
---TaskID        int primary key auto_increment,
---TaskName      varchar(60),
---ChecklistID   int,
-             --FOREIGN KEY (ChecklistID) REFERENCES tbChecklist(ChecklistID),
---TaskTime      datetime
---);
-
 -- log table for tbTask
 create table log_tbTask(
 LogID             int primary key auto_increment,
@@ -570,3 +562,19 @@ new_TaskTime      datetime,
 ActionType  ENUM  ('insert','update','delete') not null,
 TimeStamp         timestamp not null           
 );
+
+-- stored proc to insert into log_tbTask
+DELIMITER //
+CREATE TRIGGER ai_tbTask -- after insert for tbChecklist
+       AFTER INSERT ON tbTask
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTask
+                 (TaskID, old_TaskName, new_TaskName, old_ChecklistID,
+                  new_ChecklistID, old_TaskTime, new_TaskTime,
+                  ActionType, TimeStamp) values
+
+                 (new.TaskID, null, new.TaskName, null,
+                  new.ChecklistID, null, new.TaskTime,
+                  'insert', now());
+END//                
