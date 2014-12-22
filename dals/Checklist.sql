@@ -68,10 +68,11 @@ TaskTime      datetime
 );
 
 create table tbTaskProperties(
-TaskPropertyID int,
-TaskID         int,
-               FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
-PropertyName   varchar(60),
+TaskPropertyID    int,
+TaskID            int,
+                  FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
+PropertyName      varchar(60),
+PropertyAttribute varchar(60) null, -- attribute can be optional
 PropertyValue  decimal(10,2) null   -- PropertyValue is optional so it is set to null
 );
 
@@ -502,7 +503,6 @@ END //
 DELIMITER ;
      
 -- log table for tbChecklist
- 
 create table log_tbChecklist(
 LogID             int primary key auto_increment,
 ChecklistID       int unsigned not null,
@@ -550,3 +550,4 @@ BEGIN
                  'delete',now());
 END//
 DELIMITER ;
+
