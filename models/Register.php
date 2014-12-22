@@ -11,11 +11,31 @@ class Register {
         $this->db = $db;
     }
     
+    public function CheckIfEmailExists($Email)
+    {
+     // Checking if email already exists first before registering
+      $stmt =$this->db->prepare( "SELECT * FROM tbUser WHERE Email=:p_Email") ;
+      $stmt->bindValue(':p_Email', $Email, PDO::PARAM_STR);
+      $stmt ->execute();
+      $row_count = $stmt->rowCount();
+    //  $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+     // print_r($res);
+     // echo $row_count.' rows selected';die();
+    if ($row_count > 0)
+    {
+        return true;
+    }
+ else {
+        return false;    
+    }
+    }
+    
+    
     public function RegisterUser($params =[])
     {
         print_r($params);
         try 
-        {
+        {     
       $query = 'CALL spInsertUser(:p_FirstName, :p_LastName, :p_Email, :p_Password, :p_Salt)'; 
       
       $stmt = $this->db->prepare($query);
@@ -32,19 +52,15 @@ class Register {
       $stmt->execute();    
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+       
         catch (PDOException $e) 
         {
     print "Error!: " . $e->getMessage() . "<br/>";
    die();
         }
-
+        
     
     }
-    
-    
-    
-    
     
     
 }
