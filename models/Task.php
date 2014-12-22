@@ -32,7 +32,7 @@ class Task {
         catch(PDOException $ex) {
                 echo "An Error occured!"; 
                 echo $ex->getMessage();
-        }
+    }
 
     }
     public function add($params = [])

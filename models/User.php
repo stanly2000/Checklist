@@ -19,10 +19,23 @@ class User {
         $stmt->execute(array($id));
         return   $stmt->fetch(PDO::FETCH_OBJ);
     }
-    public function getAllUsers( )
+    
+    public function getAll( )
     {       
-        $stmt = $this->db->prepare("SELECT * FROM tbUser");
+        $stmt = $this->db->prepare("CALL spGetUsers");
         $stmt->execute();
         return   $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
+    public function update($params = [] )
+    {
+        try{
+            $stmt = $this->db->prepare("CALL spUpdateUser (?,? ) ");
+            $stmt->execute(array( $params['id'], $params['email']));
+            
+        } catch (Exception $ex) {
+            echo "An error occured!";
+            echo $ex->getMessage();           
+        }        
     }
 }
