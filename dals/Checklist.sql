@@ -549,3 +549,24 @@ BEGIN
 END//
 DELIMITER ;
 
+-- create table tbTask(
+--TaskID        int primary key auto_increment,
+--TaskName      varchar(60),
+--ChecklistID   int,
+             --FOREIGN KEY (ChecklistID) REFERENCES tbChecklist(ChecklistID),
+--TaskTime      datetime
+--);
+
+-- log table for tbTask
+create table log_tbTask(
+LogID             int primary key auto_increment,
+TaskID            int unsigned not null,
+old_TaskName      varchar(60) null,
+new_TaskName      varchar(60) null,
+old_ChecklistID   int null,
+new_ChecklistID   int null,
+old_TaskTime      datetime,
+new_TaskTime      datetime,         
+ActionType  ENUM  ('insert','update','delete') not null,
+TimeStamp         timestamp not null           
+);
