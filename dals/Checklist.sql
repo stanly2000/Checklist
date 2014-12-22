@@ -7,16 +7,17 @@ UserID        int primary key auto_increment,
 FirstName     varchar(60) not null,
 LastName      varchar(60) not null,
 Email         varchar(60) not null,
-Password      varchar(60) not null,
+Password      varchar(128) not null,
+Salt          varchar(60) not null,
 SecurityLevel int not null  -- 1 is normal user and 2 is admin
 );
 
-insert into tbUser(FirstName, LastName, Email, Password, SecurityLevel) values
-('Nupur','Singh','nupur@gmail.com','test', 2),
-('Jeffrey','Torres','jeffrey@gmail.com','test', 2),
-('Erika','Cruz','erika@gmail.com', 'test', 1),
-('Shlomo','Margulets','stan@gmail.com','test', 1),
-('Elvira','Estoesta','elvira@gmail.com','test', 1);
+insert into tbUser(FirstName, LastName, Email, Password, Salt, SecurityLevel) values
+('Nupur','Singh','nupur@gmail.com','test', '1234',2),
+('Jeffrey','Torres','jeffrey@gmail.com','test','1234', 2),
+('Erika','Cruz','erika@gmail.com', 'test', '1234',1),
+('Shlomo','Margulets','stan@gmail.com','test', '1234',1),
+('Elvira','Estoesta','elvira@gmail.com','test', '1234',1);
 
 create table tbGroup(
 GroupID       int primary key auto_increment,
@@ -116,12 +117,13 @@ AssignTime    datetime
  p_FirstName     varchar(60),
  p_LastName      varchar(60),
  p_Email         varchar(60),
- p_Password      varchar(60)
+ p_Password      varchar(128),
+ p_Salt          varchar(60)
  )
    BEGIN
    insert into tbUser 
-   (FirstName, LastName, Email, Password, SecurityLevel) values
-   (p_FirstName, p_LastName, p_Email, p_Password, 1);
+   (FirstName, LastName, Email, Password, Salt, SecurityLevel) values
+   (p_FirstName, p_LastName, p_Email, p_Salt, p_Password, 1);
 -- security level for every new user registration will be 1 by default
 -- but it can be changed by admin in update stored procedure
    END //
@@ -133,7 +135,8 @@ AssignTime    datetime
  p_FirstName     varchar(60),
  p_LastName      varchar(60),
  p_Email         varchar(60),
- p_Password      varchar(60),
+ p_Password      varchar(128),
+ p_Salt          varchar(60),
  p_SecurityLevel int
  )
    BEGIN
@@ -142,6 +145,7 @@ AssignTime    datetime
    LastName       = p_LastName,
    Email          = p_Email,
    Password       = p_Password,
+   Salt           = p_Salt,
    SecurityLevel  = p_SecurityLevel
    
    where UserID = p_UserID;
