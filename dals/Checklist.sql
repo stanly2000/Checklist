@@ -72,8 +72,8 @@ TaskPropertyID    int,
 TaskID            int,
                   FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
 PropertyName      varchar(60),
-PropertyAttribute varchar(60) null, -- attribute can be optional
-PropertyValue  decimal(10,2) null   -- PropertyValue is optional so it is set to null
+PropertyAttribute varchar(120) null, -- attribute can be optional
+PropertyValue  decimal(20,6) null   -- PropertyValue is optional so it is set to null
 );
 
 create table tbStatus(
@@ -350,7 +350,42 @@ AssignTime    datetime
          where  TaskID = p_TaskID;
     END //
  DELIMITER ;
+
+--CRUD for tbTaskProperties
+ DELIMITER //
+ CREATE PROCEDURE spInsertTaskProperties(
+ p_TaskID int,
+ p_PropertyName varchar(60),
+ p_PropertyAttribute varchar(120),
+ p_PropertyValue decimal(20,6)
+ )
+    begin
+         insert into tbTaskProperties
+               (TaskID, PropertyName, PropertyAttribute, PropertyValue) values
+              (p_TaskID, p_PropertyName, p_PropertyAttribute, p_PropertyValue)
+ END //
+ DELIMITER ;
  
+ DELIMITER //
+ CREATE PROCEDURE spUpdateTaskProperties(
+ p_TaskPropertyID int,
+ p_TaskID int,
+ p_PropertyName varchar(60),
+ p_PropertyAttribute varchar(120),
+ p_PropertyValue decimal(20,6)
+)
+ begin
+      update tbTaskProperties set
+             TaskID            = p_TaskID,
+             PropertyName      = p_PropertyName,
+             PropertyAttribute = p_PropertyAttribute, 
+             PropertyValue     = p_PropertyValue
+      where
+             TaskPropertyID    = p_TaskPropertyID
+ END //
+ DELIMITER ;
+
+
  -- CRUD for tbStatus
  DELIMITER //
  CREATE PROCEDURE spInsertStatus(
@@ -565,7 +600,7 @@ TimeStamp         timestamp not null
 
 -- stored proc to insert into log_tbTask
 DELIMITER //
-CREATE TRIGGER ai_tbTask -- after insert for tbChecklist
+CREATE TRIGGER ai_tbTask -- after insert for tbTask
        AFTER INSERT ON tbTask
                   FOR EACH ROW
 BEGIN
@@ -578,7 +613,7 @@ BEGIN
                   new.ChecklistID, null, new.TaskTime,
                   'insert', now());
 END//      
-CREATE TRIGGER au_tbTask -- after update for tbChecklist
+CREATE TRIGGER au_tbTask -- after update for tbTask
        AFTER UPDATE ON tbTask
                   FOR EACH ROW
 BEGIN
@@ -592,7 +627,7 @@ BEGIN
                   'update', now());
 END//
 
-CREATE TRIGGER ad_tbTask -- after delete for tbChecklist
+CREATE TRIGGER ad_tbTask -- after delete for tbTask
        AFTER DELETE ON tbTask
                   FOR EACH ROW
 BEGIN
