@@ -30,9 +30,6 @@ class Register {
       $stmt->bindValue(':p_Salt', $salt, PDO::PARAM_STR);
       
       $stmt->execute();    
-     echo "salt=".$salt."<br>";
-     echo "hash=".$hash."<br>";
-     die();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         

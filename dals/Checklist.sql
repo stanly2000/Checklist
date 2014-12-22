@@ -13,11 +13,11 @@ SecurityLevel int not null  -- 1 is normal user and 2 is admin
 );
 
 insert into tbUser(FirstName, LastName, Email, Password, Salt, SecurityLevel) values
-('Nupur','Singh','nupur@gmail.com','test', '1234',2),
-('Jeffrey','Torres','jeffrey@gmail.com','test','1234', 2),
-('Erika','Cruz','erika@gmail.com', 'test', '1234',1),
-('Shlomo','Margulets','stan@gmail.com','test', '1234',1),
-('Elvira','Estoesta','elvira@gmail.com','test', '1234',1);
+('Nupur','Singh','nupur@gmail.com','$6$rounds=6666$/oPdCi9Uvbrpr3iP$a2yH4L8NYO7PIuO8CmmW5ZKxF.4m2CpURZpshsS7lAGdYqBL/ezBkki1c.I6CvhYe7OL1bo5IuRYZfy6m1yjK0','/oPdCi9Uvbrpr3iP',2),
+('Jeffrey','Torres','jeffrey@gmail.com','$6$rounds=6666$/oPdCi9Uvbrpr3iP$a2yH4L8NYO7PIuO8CmmW5ZKxF.4m2CpURZpshsS7lAGdYqBL/ezBkki1c.I6CvhYe7OL1bo5IuRYZfy6m1yjK0','/oPdCi9Uvbrpr3iP', 2),
+('Erika','Cruz','erika@gmail.com', '$6$rounds=6666$/oPdCi9Uvbrpr3iP$a2yH4L8NYO7PIuO8CmmW5ZKxF.4m2CpURZpshsS7lAGdYqBL/ezBkki1c.I6CvhYe7OL1bo5IuRYZfy6m1yjK0', '/oPdCi9Uvbrpr3iP',1),
+('Shlomo','Margulets','stan@gmail.com', '$6$rounds=6666$VMFnFSJPzOjm4NZx$9lDXIgQUoAx0FXFbFNOsIbirgbNz5kTILhDy9r6oc9xKHKhoOrpZ1HyyfX/A5vZOMUhc707Ho2JLZ0glg5xiz/','VMFnFSJPzOjm4NZx',1),
+('Elvira','Estoesta','elvira@gmail.com','$6$rounds=6666$VMFnFSJPzOjm4NZx$9lDXIgQUoAx0FXFbFNOsIbirgbNz5kTILhDy9r6oc9xKHKhoOrpZ1HyyfX/A5vZOMUhc707Ho2JLZ0glg5xiz/','VMFnFSJPzOjm4NZx', 1);
 
 create table tbGroup(
 GroupID       int primary key auto_increment,
