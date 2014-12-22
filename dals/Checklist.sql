@@ -500,4 +500,53 @@ BEGIN
                 null, 'delete', now());
 END //
 DELIMITER ;
-              
+     
+-- log table for tbChecklist
+ 
+create table log_tbChecklist(
+LogID             int primary key auto_increment,
+ChecklistID       int unsigned not null,
+old_ChecklistName varchar(60) null,
+new_ChecklistName varchar(60) null,         
+ActionType  ENUM  ('insert','update','delete') not null,
+TimeStamp         timestamp not null           
+);
+
+-- stored proc to insert into log_tbChecklist
+DELIMITER //
+CREATE TRIGGER ai_tbChecklist -- after insert for tbChecklist
+       AFTER INSERT ON tbChecklist
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbChecklist
+                (ChecklistID, old_ChecklistName, new_ChecklistName, 
+                 ActionType, TimeStamp) values
+                
+                (new.ChecklistID, null, new.ChecklistName,
+                 'insert',now());
+END//
+
+CREATE TRIGGER au_tbChecklist -- after update for tbChecklist
+        AFTER UPDATE ON tbChecklist
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbChecklist
+                (ChecklistID, old_ChecklistName, new_ChecklistName, 
+                 ActionType, TimeStamp) values
+
+                (new.ChecklistID, old.ChecklistName, new.ChecklistName,
+                 'update',now());
+END//
+
+CREATE TRIGGER ad_tbChecklist -- after delete for tbChecklist
+        AFTER DELETE ON tbChecklist
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbChecklist
+                (ChecklistID, old_ChecklistName, new_ChecklistName, 
+                 ActionType, TimeStamp) values
+                
+                (old.ChecklistID, old.ChecklistName, null,
+                 'delete',now());
+END//
+DELIMITER ;
