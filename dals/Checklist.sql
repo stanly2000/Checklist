@@ -452,7 +452,6 @@ TimeStamp         timestamp not null
 
 -- stored proc to insert into log_tbUser
 DELIMITER //
--- DROP TRIGGER test.tbUser_insert//
 CREATE TRIGGER ai_tbUser -- after insert data for tbUser
        AFTER INSERT ON tbUser
                   FOR EACH ROW
@@ -468,3 +467,37 @@ BEGIN
                new.Password, null, new.Salt, null,
                new.SecurityLevel, 'insert', now());
 END//
+
+CREATE TRIGGER au_tbUser --after update in tbUser
+       AFTER UPDATE ON tbUser
+                  FOR EACH ROW
+BEGIN 
+       INSERT INTO log_tbUser
+               (UserID, old_FirstName, new_FirstName, old_LastName,
+               new_LastName, old_Email, new_Email, old_Password,
+               new_Password, old_Salt, new_Salt, old_SecurityLevel,
+               new_SecurityLevel, ActionType, TimeStamp) values
+
+               (new.UserID, old.FirstName, new.FirstName, old.LastName,
+               new.LastName, old.Email, new.Email, old.Password,
+               new.Password, old.Salt, new.Salt, old.SecurityLevel,
+               new.SecurityLevel, 'update', now());
+END//
+
+CREATE TRIGGER ad_tbUser  -- after delete
+        AFTER DELETE ON tbUser
+                  FOR EACH ROW
+BEGIN 
+      INSERT INTO log_tbUser
+              (UserID, old_FirstName, new_FirstName, old_LastName,
+               new_LastName, old_Email, new_Email, old_Password,
+               new_Password, old_Salt, new_Salt, old_SecurityLevel,
+               new_SecurityLevel, ActionType, TimeStamp) values
+ 
+               (old.UserID, old.FirstName, null, old.LastName,
+                null, old.Email, null, old.Password,
+                null, old.Salt, null, old.SecurityLevel,
+                null, 'delete', now());
+END //
+DELIMITER ;
+              
