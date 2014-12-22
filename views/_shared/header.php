@@ -63,12 +63,12 @@
             ?>
         <li><a>Hello&nbsp;<?php echo $_SESSION['FirstName'];?>!</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/logout">Log out</a></li>
+                <li id="UserManager" class="dropdown">
+        <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
+      </li>
         <?php  }  
         }  ?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
-        <li id="UserManager" class="dropdown">
-        <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
-      </li>
     </ul>
   </div>
 </div>
