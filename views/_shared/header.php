@@ -29,6 +29,7 @@
             }
         });
         </script>
+        <?php $_SESSION['SecurityLevel'] = -1 ?>
     </head>
     <body>
 <div class="navbar navbar-inverse">
