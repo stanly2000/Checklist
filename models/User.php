@@ -39,7 +39,7 @@ class User {
         }        
     }
     
-     public function add($params = [])
+    public function add($params = [])
     {
          $stmt = $this->db->prepare("CALL spInsertUser (:p_Email) ");
          $stmt->bindValue(':p_Email', $params['email'], PDO::PARAM_STR);
