@@ -385,7 +385,15 @@ AssignTime    datetime
  END //
  DELIMITER ;
 
-
+ DELIMITER //
+ CREATE PROCEDURE spDeleteTaskProperties(
+ p_TaskPropertyID int
+)
+ begin
+      delete from tbTaskProperties
+      where TaskPropertyID = p_TaskPropertyID;
+ END //
+ DELIMITER ;
 
 
  -- CRUD for tbStatus
