@@ -577,4 +577,32 @@ BEGIN
                  (new.TaskID, null, new.TaskName, null,
                   new.ChecklistID, null, new.TaskTime,
                   'insert', now());
-END//                
+END//      
+CREATE TRIGGER au_tbTask -- after update for tbChecklist
+       AFTER UPDATE ON tbTask
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTask
+                 (TaskID, old_TaskName, new_TaskName, old_ChecklistID,
+                  new_ChecklistID, old_TaskTime, new_TaskTime,
+                  ActionType, TimeStamp) values
+                  
+                 (new.TaskID, old.TaskName, new.TaskName, old.ChecklistID,
+                  new.ChecklistID, old.TaskTime, new.TaskTime,
+                  'update', now());
+END//
+
+CREATE TRIGGER ad_tbTask -- after delete for tbChecklist
+       AFTER DELETE ON tbTask
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTask
+                 (TaskID, old_TaskName, new_TaskName, old_ChecklistID,
+                  new_ChecklistID, old_TaskTime, new_TaskTime,
+                  ActionType, TimeStamp) values
+
+                 (old.TaskID, old.TaskName, null, old.ChecklistID,
+                  null, old.TaskTime, null,
+                  'delete', now());
+END//
+DELIMITER ;
