@@ -73,7 +73,7 @@ TaskID            int,
                   FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
 PropertyName      varchar(60),
 PropertyAttribute varchar(120) null, -- attribute can be optional
-PropertyValue  decimal(20,6) null   -- PropertyValue is optional so it is set to null
+PropertyValue  decimal(10,2) null   -- PropertyValue is optional so it is set to null
 );
 
 create table tbStatus(
@@ -357,12 +357,12 @@ AssignTime    datetime
  p_TaskID int,
  p_PropertyName varchar(60),
  p_PropertyAttribute varchar(120),
- p_PropertyValue decimal(20,6)
+ p_PropertyValue decimal(10,2)
  )
     begin
          insert into tbTaskProperties
                (TaskID, PropertyName, PropertyAttribute, PropertyValue) values
-              (p_TaskID, p_PropertyName, p_PropertyAttribute, p_PropertyValue)
+              (p_TaskID, p_PropertyName, p_PropertyAttribute, p_PropertyValue);
  END //
  DELIMITER ;
  
@@ -372,7 +372,7 @@ AssignTime    datetime
  p_TaskID int,
  p_PropertyName varchar(60),
  p_PropertyAttribute varchar(120),
- p_PropertyValue decimal(20,6)
+ p_PropertyValue decimal(10,2)
 )
  begin
       update tbTaskProperties set
@@ -381,9 +381,11 @@ AssignTime    datetime
              PropertyAttribute = p_PropertyAttribute, 
              PropertyValue     = p_PropertyValue
       where
-             TaskPropertyID    = p_TaskPropertyID
+             TaskPropertyID    = p_TaskPropertyID;
  END //
  DELIMITER ;
+
+
 
 
  -- CRUD for tbStatus
