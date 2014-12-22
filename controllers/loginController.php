@@ -26,4 +26,11 @@ class LoginController extends Controller {
                 $this->redirect('login/index');
             }
     }
+    public function logout() {
+        
+        session_unset();
+        $_SESSION['SecurityLevel'] = -1;
+        $this->redirect('login/index');
+        
+    }
 }

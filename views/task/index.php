@@ -10,11 +10,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="info">
-            <td>example</td>
-            <td>example</td>
-            <td>example</td>
-            <td>example</td>
-        </tr>
+     <?php foreach ($data['tasks'] as $taskList)  { ?>
+       <tr>
+           <td><?php echo $taskList->ChecklistName; ?></td>
+           <td>
+           <a href="<?php echo RESOURCE; ?>/task/edit/<?php echo $taskList->TaskID ?>" >view</a>||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/task/update/<?php echo $taskList->TaskID ?>" >update</a>||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/task/delete/<?php echo $taskList->TaskID ?>" >delete</a>
+           </td>
+       </tr>
+     <?php } ?>
     </tbody>
 </table>
