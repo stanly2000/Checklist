@@ -452,9 +452,9 @@ TimeStamp         timestamp not null
 
 -- stored proc to insert into log_tbUser
 DELIMITER //
-DROP TRIGGER test.tbUser_insert//
-CREATE TRIGGER test.tbUser_insert
-       AFTER INSERT ON test.tbUser
+-- DROP TRIGGER test.tbUser_insert//
+CREATE TRIGGER ai_tbUser -- after insert data for tbUser
+       AFTER INSERT ON tbUser
                   FOR EACH ROW
 BEGIN
        INSERT INTO log_tbUser
@@ -463,8 +463,8 @@ BEGIN
                new_Password, old_Salt, new_Salt, old_SecurityLevel,
                new_SecurityLevel, ActionType, TimeStamp) values
 
-              (new.UserID, null, new_FirstName, null,
-               new_LastName, null, new_Email, null,
-               new_Password, null, new_Salt, null,
-               new_SecurityLevel, 'insert', now());
+              (new.UserID, null, new.FirstName, null,
+               new.LastName, null, new.Email, null,
+               new.Password, null, new.Salt, null,
+               new.SecurityLevel, 'insert', now());
 END//
