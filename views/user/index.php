@@ -19,8 +19,8 @@
            <td><?php echo $userList->Email; ?></td>
            <td><?php echo $userList->SecurityLevel; ?></td>           
            <td>
-           <a href="<?php echo RESOURCE; ?>/user/edit/<?php echo $userList->UserID ?>" >View</a>||&nbsp;
-           <a href="<?php echo RESOURCE; ?>/user/update/<?php echo $userList->UserID ?>" >Update</a>||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/user/edit/<?php echo $userList->UserID ?>" >View</a>&nbsp;||&nbsp;
+           <a href="<?php echo RESOURCE; ?>/user/update/<?php echo $userList->UserID ?>" >Update</a>&nbsp;||&nbsp;
            <a href="<?php echo RESOURCE; ?>/user/delete/<?php echo $userList->UserID ?>" >Delete</a>
 
            </td>
