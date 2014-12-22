@@ -1,5 +1,5 @@
 <?php
-
+require_once '../utilities/Hash.php';
 class Register { 
      private $db;
      public $FirstName;
@@ -24,8 +24,8 @@ class Register {
       $stmt->bindValue(':p_LastName', $params['LastName'], PDO::PARAM_STR);
       $stmt->bindValue(':p_Email', $params['Email'], PDO::PARAM_STR);
      // $stmt->bindValue(':p_Password', $params['Password'], PDO::PARAM_STR);
-      $salt = $this->genSalt();
-      $hash = $this->genHash($params['Password'], $salt);
+      $salt = Hash::genSalt();
+      $hash = Hash::genHash($params['Password'], $salt);
       $stmt->bindValue(':p_Password', $hash, PDO::PARAM_STR);
       $stmt->bindValue(':p_Salt', $salt, PDO::PARAM_STR);
       
@@ -42,21 +42,7 @@ class Register {
     
     }
     
-    private function genSalt(){
-        $length = 16;
-     
-        return substr(str_replace('+','.',  base64_encode(md5(mt_rand(), true))),0,16);
-    }
     
-    private function genHash($password,$salt){
-        if (CRYPT_SHA512 !=1){
-            die("Can't find hash function!");
-        }
-        else{
-            $rounds = 6666;
-            return crypt($password, '$6$rounds='.$rounds.'$'.$salt);
-        }
-    }
     
     
     
