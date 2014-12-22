@@ -20,7 +20,7 @@ class User {
         return   $stmt->fetch(PDO::FETCH_OBJ);
     }
     
-    public function getAll( )
+    public function getAll()
     {       
         $stmt = $this->db->prepare("CALL spGetUsers");
         $stmt->execute();
