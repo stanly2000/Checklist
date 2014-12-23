@@ -251,7 +251,7 @@ AssignTime    datetime
     END //
  DELIMITER ;
 
- -- this procedure gets all users by supplied GroupID 
+ -- this procedure gets all users by supplied   GroupID 
 DELIMITER //
  CREATE PROCEDURE spGetUserGroupByID(
  p_GroupID int
