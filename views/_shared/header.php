@@ -96,34 +96,47 @@
                 </div>  
             </div> 
        
-            <?php  if (isset($_SESSION['validationErrors']) && count($_SESSION['validationErrors']) > 0) : ?>
-<div class="row">
+            <?php  if (isset($_SESSION['validationErrors']) && count($_SESSION['validationErrors']) > 0){
+                    $errorBoxCssClass = "";
+                    }
+                    else {
+                        $errorBoxCssClass = "unseen";
+                    }
+             ?>
+            
+<div class="row <?php echo $errorBoxCssClass; ?>">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6 validationErrorsBox">
       <ul>
       <?php
+          if (isset($_SESSION['validationErrors']) && count($_SESSION['validationErrors']) > 0){
           foreach ($_SESSION['validationErrors'] as $valError) {
               echo "<li>".$valError."</li>";
           }
           unset($_SESSION['validationErrors']);
+          }
       ?>
       </ul>
   </div>
   <div class="col-lg-3">&nbsp;</div>
 </div>
-            <?php      endif; ?>
+            
   
-            <?php if (isset($_SESSION['afterActionMessage']) ) : ?>
-            <div class="row">
+            <?php if (isset($_SESSION['afterActionMessage']) ) {
+                    $messageBoxCssClass = "";
+                    $message =  "<BR>".$_SESSION['afterActionMessage']."<BR>";
+                    unset($_SESSION['afterActionMessage']);
+            }
+                    else {
+                        $messageBoxCssClass = "unseen";
+                        $message = "";
+                    }
+             ?>
+            <div class="row <?php echo $messageBoxCssClass; ?>">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6 afterActionMessageBox">
-      <?php
-      
-              echo "<br>".$_SESSION['afterActionMessage'];
-          unset($_SESSION['afterActionMessage']);
-      
-      ?>
+      <?php echo $message; ?>
   </div>
   <div class="col-lg-3">&nbsp;</div>
 </div>
-            <?php      endif; ?>
+            
