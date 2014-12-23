@@ -250,6 +250,21 @@ AssignTime    datetime
 			   tbUserGroup.GroupID = tbGroup.GroupID;
     END //
  DELIMITER ;
+
+ -- this procedure gets all users by supplied GroupID 
+DELIMITER //
+ CREATE PROCEDURE spGetUserGroupByID(
+ p_GroupID int
+ )
+   BEGIN
+        select tbUser.UserID, FirstName, LastName, Email, SecurityLevel, 
+               tbGroup.GroupID, GroupName
+        from   tbUserGroup, tbUser, tbGroup
+        where  tbUser.UserID = tbUserGroup.UserID and
+               tbUserGroup.GroupID = p_GroupID and
+               tbUserGroup.GroupID = tbGroup.GroupID;
+    END //
+ DELIMITER ;
  
  -- CRUD for tbChecklist
  DELIMITER //
