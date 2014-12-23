@@ -1,4 +1,8 @@
-
+<?php
+//echo "<pre>";
+//print_r($data['checklist']);
+//echo "</pre>";
+?>
 <div class="row">
    
     <div class="col-lg-2">&nbsp;</div>
@@ -7,8 +11,8 @@
             <thead>
                 <tr>
                     <th>Task Name</th>
-                   
-                    <th>Task Properties</th>
+
+                    <th>Optional  Task Properties</th>
                     <th >Actions &nbsp;&nbsp;&nbsp;<a class="font20" id="btnAddTask" href="#">Add New </a></th>
                 </tr>
             </thead>
@@ -26,10 +30,10 @@
        <tr id="trTask_<?php echo $task->TaskID; ?>">
            <td><?php echo $task->TaskName; ?></td>
 
-           <td> ppp</td>
+           }?></td>
            <td>
            <a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $task->TaskID ?>" >view</a>&nbsp;
-           <a class="editTask" href="<?php echo RESOURCE; ?>/checklist/update/<?php echo $task->TaskID ?>" >update</a>&nbsp;
+           <a id="uplink_<?php echo $task->TaskID ?>" class="editTask" href="#" >update</a>&nbsp;
            <a id="dlink_<?php echo $task->TaskID ?>" href="#" class='removeTask' >delete</a>
 
        </tr>
@@ -51,13 +55,25 @@
         $('#btnAddTask').on('click', function(){
             // display add new task div
             $('#trNewEdit').removeClass("unseen");
+            hideErrorMessageBoxes();
         });
         
-        $('.editTask').on('click', function(){
+        $(document).on('click', '.editTask', function () {
+            tmp = $(this).attr('id').split('_');
+             taskID = tmp[1];
+             TrToUpdateID = 'trTask_' + taskID;
+             console.log(this);
+             // console.log($('#'+TrToUpdateID ));
+             //$("table tr:eq(5) td")
+             taskName = $('#' + TrToUpdateID + ":nth-child(1)").text();
+             alert($('#' + TrToUpdateID + ":nth-child(0)").text());
+             console.log($('#' + TrToUpdateID + ":nth-child(1)"));
+            // txtName txtOptName txtOptValue
+            // $('#txtName') = html();
             
         });
-        
-        $('.removeTask').on('click', function(){
+        $(document).on('click', '.removeTask', function () {
+        //$('.removeTask').on('click', function(){
             // promt yes /no?
             tmp = $(this).attr('id').split('_');
              idToDel = tmp[1];
@@ -69,6 +85,11 @@
                 {
                     console.log(data);
                     res = JSON.parse(data);
+                    if (res['actionCompleted'] == true){
+                    var TrToRemove = 'trTask_' + idToDel;
+                    $('#' + TrToRemove ).empty();
+                    displayMessage(res['afterActionMessage']);
+                    }
                     
                 },
                 error: function (jqXHR, textStatus, errorThrown)
@@ -100,11 +121,11 @@
                         if ($('#txtOptName').val() != ''){
                             optParams = $('#txtOptName').val()+ ' : ' + $('#txtOptValue').val();
                         }
-                        buttonsTD = '<a href="' + _PATH_ + '/checklist/view/' + taskID + '" >view</a>&nbsp' +
-                                    '<a class="" href="' + _PATH_ + '/checklist/update/' + taskID + '" >update</a>&nbsp;' +
+                        buttonsTD = '<a href="' + _PATH_ + '/checklist/view/' + taskID + '" >view</a>&nbsp&nbsp' +
+                                    '<a class="" href="' + _PATH_ + '/checklist/update/' + taskID + '" >update</a>&nbsp&nbsp;' +
                                     '<a id="' + trID + '" href="#" class="removeTask" >delete</a>' ;
                             
-                        newAdded = '<tr><td>' + $('#txtName').val() + '</td><td>' + optParams + '</td><td>' + buttonsTD + '</td></tr>';
+                        newAdded = '<tr id="trTask_' + taskID + '"><td>' + $('#txtName').val() + '</td><td>' + optParams + '</td><td>' + buttonsTD + '</td></tr>';
                         
                          $("tr:last").after(newAdded);
                          
@@ -121,6 +142,7 @@
         $('#btnCancelEdit').on('click', function(){
             clearEditForm();
              $('#trNewEdit').addClass("unseen");
+             hideErrorMessageBoxes();
         });
     });
     
@@ -130,12 +152,26 @@
         $('#txtOptValue').val('');
     }
     
-    function displayMessage($message){
+    function displayMessage(message){
         $('#messageBoxContainer').removeClass("unseen");
-        $('.afterActionMessageBox').html($message);
+        $('.afterActionMessageBox').html(message);
     }
-    
-    function displayError($error){
+    function displayErrors(errors){
+        $('#errorBoxContainer').removeClass("unseen");
+        for (error in errors) {
+        text +='<li>' + errors[error] + '</li>';
+        $('.validationErrorsBox').html('<ul>' + message + '</ul>');
+}
+    }
+    function hideErrorBox(){
+        $('#errorBoxContainer').addClass("unseen");
+    }
+    function hideMessageBox(){
+        $('#messageBoxContainer').addClass("unseen");
+    }
+    function hideErrorMessageBoxes(){
+        $('#messageBoxContainer').addClass("unseen");
+        $('#errorBoxContainer').addClass("unseen");
     }
 </script>
 

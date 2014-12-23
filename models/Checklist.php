@@ -28,7 +28,8 @@ class Checklist implements IDbModels{
     
     public function getTasks(){
         try{
-        $stmt = $this->db->prepare("SELECT * FROM tbTask WHERE ChecklistID=?");
+
+        $stmt = $this->db->prepare("SELECT t.TaskID, TaskName, ChecklistID, PropertyName, PropertyAttribute, PropertyValue  FROM `tbTask` as t  LEFT JOIN `tbTaskProperties` as p  ON (t.TaskID = p.TaskID) WHERE t.ChecklistID = ?");
         $stmt->execute(array($this->ChecklistID));
         $this->Tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
         return true;

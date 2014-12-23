@@ -15,10 +15,8 @@ class ChecklistController extends Controller
     {
        $model = $this->model('Checklist');
         if ($model->load($id)){
-            if(!$model->getTasks())
-            {
-                echo "AAAAAAAAAAAAAAA";die();
-            }
+            $model->getTasks();
+
         $this->render(__CLASS__,__FUNCTION__,
                 'checklist/view',
     ['checklist'=>$model ],'updatePost' ); 
@@ -155,9 +153,11 @@ class ChecklistController extends Controller
         $model = $this->model('Task');
         if ($model->remove($_POST['taskID']))
         {
+            $data['actionCompleted'] = true;
             $data['afterActionMessage'] = "Action Successfully Completed";
         }
         else{
+            $data['actionCompleted'] = false;
             $data['afterActionMessage'] = "Action failded, DB Problem..";
         }
         echo json_encode($data);

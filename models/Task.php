@@ -6,6 +6,9 @@ class Task {
      public $TaskName;
      public $ChecklistID;
      public $TaskTime;
+     public $PropertyName;
+     public $PropertyAttribute;
+     public $PropertyValue;
      
       function __construct($db) {
         $this->db = $db;
