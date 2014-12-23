@@ -119,6 +119,8 @@ AssignTime    datetime
   END //
  DELIMITER ;
 
+-- security level for every new user registration will be 1 by default
+-- but it can be changed by admin in update stored procedure
  DELIMITER //
  CREATE PROCEDURE spInsertUser(
  p_FirstName     varchar(60),
@@ -131,8 +133,8 @@ AssignTime    datetime
    insert into tbUser 
    (FirstName, LastName, Email, Password, Salt, SecurityLevel) values
    (p_FirstName, p_LastName, p_Email,  p_Password, p_Salt, 1);
--- security level for every new user registration will be 1 by default
--- but it can be changed by admin in update stored procedure
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
    END //
  DELIMITER ;
  
@@ -178,7 +180,9 @@ AssignTime    datetime
  )  
    BEGIN
    insert into tbGroup (GroupName) values
-					   (p_GroupName);
+		     (p_GroupName);
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
     END //
  DELIMITER ;
  
@@ -216,6 +220,8 @@ AssignTime    datetime
    BEGIN
    insert into tbUserGroup (UserID, GroupID) values
                           (p_UserID, p_GroupID);
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
     END //
  DELIMITER ;
  
@@ -253,6 +259,8 @@ AssignTime    datetime
    BEGIN
    insert into tbChecklist (ChecklistName) values
                           (p_ChecklistName);
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
     END //
  DELIMITER ;
  
@@ -322,6 +330,8 @@ AssignTime    datetime
     begin
 		 insert into tbTask (TaskName, ChecklistID, TaskTime) values
                           (p_TaskName, p_ChecklistID, p_TaskTime);
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
   END //
  DELIMITER ;
  
@@ -363,7 +373,9 @@ AssignTime    datetime
          insert into tbTaskProperties
                (TaskID, PropertyName, PropertyAttribute, PropertyValue) values
               (p_TaskID, p_PropertyName, p_PropertyAttribute, p_PropertyValue);
- END //
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID; 
+END //
  DELIMITER ;
  
  DELIMITER //
@@ -404,6 +416,8 @@ AssignTime    datetime
     begin
 		 insert into tbStatus (StatusName) values
                              (p_StatusName);
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;
     END //
  DELIMITER ;
  
@@ -440,7 +454,9 @@ AssignTime    datetime
     begin
 		 insert into tbAssignChecklist 
                 (GroupID, ChecklistID, AssignTime) values
-			   (p_GroupID, p_ChecklistID, p_AssignTime);              
+			   (p_GroupID, p_ChecklistID, p_AssignTime);  
+  SET @lastID = LAST_INSERT_ID();
+                          SELECT @lastID as lastInsertID;            
     END //
  DELIMITER ;
  
