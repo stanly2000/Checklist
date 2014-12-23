@@ -16,5 +16,12 @@ class Group {
         return $rows;
         
     }
+    public function GetView($id) {
+        
+        $stmt = $this->db->prepare('select * from tbGroup where GroupID = ?');
+        $stmt->execute(array($id));
+        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
+        return $rows;
+    }
     
 }

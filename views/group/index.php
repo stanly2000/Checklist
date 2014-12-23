@@ -18,7 +18,7 @@
                     <td><?php echo $g['GroupID']; ?></td>
                     <td><?php echo $g['GroupName']; ?></td>
                     <td>
-                    <a href="<?php echo RESOURCE; ?>/group/edit/<?php echo $g['GroupID'] ?>" >view</a> ||
+                    <a href="<?php echo RESOURCE; ?>/group/view/<?php echo $g['GroupID'] ?>" >view</a> ||
                     <a href="<?php echo RESOURCE; ?>/group/update/<?php echo $g['GroupID'] ?>" >update</a> ||
                     <a href="<?php echo RESOURCE; ?>/group/delete/<?php echo $g['GroupID'] ?>" >delete</a>
                     </td>
