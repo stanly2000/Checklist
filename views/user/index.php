@@ -1,6 +1,6 @@
 <?php
 ?>
-<table class="table table-striped table-condensed table-hover">
+<table class="table table-striped table-hover">
     <thead>
         <tr class="success">
             <th>User ID</th>
