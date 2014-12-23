@@ -21,6 +21,25 @@ class groupController extends Controller {
         $this->render( __CLASS__,__FUNCTION__,'group/view',['view'=>$view]);
         
     }
+    public function update($id) {
+        
+        $model = $this->model('Group');
+        $update = $model->GetView($id);
+        $this->render( __CLASS__,__FUNCTION__,'group/update',['update'=>$update],'UpdateGroup');
+        
+    }
+    public function UpdateGroup() {
+        
+        $model = $this->model('Group');
+        $groupupdate = $model->UpdateGroup($_POST['UGName']);
+        if ($groupupdate != null) {
+            $this->redirect('group/index');
+        }
+        else{
+            echo "name not updated";
+        }
+        
+    }
     
     
 }

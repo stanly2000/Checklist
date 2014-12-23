@@ -23,5 +23,11 @@ class Group {
         $rows = $stmt->fetchall(PDO::FETCH_OBJ);
         return $rows;
     }
+    public function UpdateGroup($groupname) {
+        
+        $stmt = $this->db->prepare('CALL spUpdateUserGroup (?)');
+        $stmt->execute(array($groupname));
+        return $stmt;
+    }
     
 }
