@@ -9,7 +9,7 @@
         <script src="<?php echo RESOURCE ;?>/js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script type="text/javascript">
         $(document).ready(function(){
-            var data = "<?php echo $_SESSION['SecurityLevel'] ?>";
+            var data = "<?php if(isset($_SESSION['SecurityLevel'])) echo $_SESSION['SecurityLevel'];else echo "-1"; ?>";
                 $('#Loginbtn').hide();
                 $('#Logoutbtn').hide();
                 $('#UserManager').hide();
