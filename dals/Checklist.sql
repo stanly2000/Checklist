@@ -655,7 +655,8 @@ BEGIN
                  (new.TaskID, null, new.TaskName, null,
                   new.ChecklistID, null, new.TaskTime,
                   'insert', now());
-END//      
+END//    
+  
 CREATE TRIGGER au_tbTask -- after update for tbTask
        AFTER UPDATE ON tbTask
                   FOR EACH ROW
@@ -699,3 +700,37 @@ new_PropertyValue     decimal(10,2) null,
 ActionType  ENUM  ('insert','update','delete') not null,
 TimeStamp         timestamp not null           
 );
+
+-- stored proc to insert into log_tbTaskProperties
+DELIMITER //
+CREATE TRIGGER ai_tbTaskProperties -- after insert for tbTaskProperties
+       AFTER INSERT ON tbTaskProperties
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTaskProperties
+                (TaskPropertyID, old_PropertyName, new_PropertyName,
+                 old_PropertyAttribute, new_PropertyAttribute,
+                 old_PropertyValue, new_PropertyValue, 
+                 ActionType, TimeStamp) values
+                
+                (new.TaskPropertyID, null, new.PropertyName,
+                 null, new.PropertyAttribute,
+                 null, new.PropertyValue,
+                 'insert',now());
+END//
+
+CREATE TRIGGER au_tbTaskProperties -- after update for tbTaskProperties
+       AFTER UPDATE ON tbTaskProperties
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTaskProperties
+                 (TaskPropertyID, old_PropertyName, new_PropertyName,
+                 old_PropertyAttribute, new_PropertyAttribute,
+                 old_PropertyValue, new_PropertyValue, 
+                 ActionType, TimeStamp) values
+                  
+                 (new.TaskPropertyID, old.PropertyName, new.PropertyName, 
+                  old.PropertyAttribute, new.PropertyAttribute,
+                  old.PropertyValue, new.PropertyValue,
+                  'update', now());
+END//
