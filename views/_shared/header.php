@@ -7,6 +7,11 @@
         <link href="<?php echo RESOURCE ;?>/css/Site.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo RESOURCE ;?>/css/custom.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo RESOURCE ;?>/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script>
+            var _PATH_ = '<?php echo RESOURCE; ?>';
+            var _POST_URL = "<?php echo RESOURCE; ?>/home/index.php";
+        </script>
+        
         <script type="text/javascript">
         $(document).ready(function(){
             var data = "<?php if(isset($_SESSION['SecurityLevel'])) echo $_SESSION['SecurityLevel'];else echo "-1"; ?>";
