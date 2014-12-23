@@ -6,9 +6,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Task Name</th>
                    
-                    <th>Task Params</th>
+                    <th>Task Properties</th>
                     <th >Actions &nbsp;&nbsp;&nbsp;<a class="font20" id="btnAddTask" href="#">Add New </a></th>
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
                     <td id="tName"><input type="text" id="txtName" ></td>
                     
                     <td id="tOptions">
-                        Name:<input type="text" id="txtOptName" >&nbsp;<br><br>Value: <input type="text" id="txtOptValue" >
+                        Attribute (optional):<input type="text" id="txtOptName" >&nbsp;<br><br>Value (optional): <input type="text" id="txtOptValue" >
                     </td>
                     <td id="tActions" style="white-space: nowrap;"><button id="btnSave" class="btn btn-primary" >Save</button>&nbsp;&nbsp;&nbsp;
                             <button id="btnCancelEdit" class="btn btn-primary" >Cancel</button></td>

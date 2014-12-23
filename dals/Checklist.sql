@@ -247,11 +247,11 @@ AssignTime    datetime
                tbGroup.GroupID, GroupName
         from   tbUserGroup, tbUser, tbGroup
         where  tbUser.UserID = tbUserGroup.UserID and
-			   tbUserGroup.GroupID = tbGroup.GroupID;
+	       tbUserGroup.GroupID = tbGroup.GroupID;
     END //
  DELIMITER ;
 
- -- this procedure gets all users by supplied   GroupID 
+ -- this procedure gets all users by supplied GroupID 
 DELIMITER //
  CREATE PROCEDURE spGetUserGroupByID(
  p_GroupID int
