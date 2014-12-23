@@ -104,7 +104,7 @@
                     }
              ?>
             
-<div class="row <?php echo $errorBoxCssClass; ?>">
+<div id="errorBoxContainer" class="row <?php echo $errorBoxCssClass; ?>">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6 validationErrorsBox">
       <ul>
@@ -132,7 +132,7 @@
                         $message = "";
                     }
              ?>
-            <div class="row <?php echo $messageBoxCssClass; ?>">
+            <div id="messageBoxContainer" class="row <?php echo $messageBoxCssClass; ?>">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6 afterActionMessageBox">
       <?php echo $message; ?>
