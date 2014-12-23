@@ -27,7 +27,7 @@
         </table>
     </div>
       <div class="col-lg-3">&nbsp;</div>
-      <form id="rmform" method="POST" action="<?php echo RESOURCE ;?>/home/">
+      <form id="rmform" method="POST" action="<?php echo RESOURCE ;?>/home/index.php">
           <input type="hidden" name="id" id="id" value="">
           <input type="hidden" name="cntr" value="<?php echo $activeController;?>" >
           <input type="hidden" name="actn" value="rmPost" >
