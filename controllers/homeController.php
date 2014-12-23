@@ -10,8 +10,6 @@ class HomeController extends Controller
         $header = APP . 'views/_shared/header.php';
         $this->render(__CLASS__,__FUNCTION__,'home/index');
     }
-
-
     public function test()
     {
 
@@ -19,8 +17,7 @@ class HomeController extends Controller
          $users = $model->getAll();
          $this->render( __CLASS__,__FUNCTION__,'home/test',['users'=>$users ]);
         
-    }
-    
+    }    
     public function user($id = null)
     {
         $model = $this->model('User');
