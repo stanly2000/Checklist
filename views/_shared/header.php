@@ -124,7 +124,7 @@
   
             <?php if (isset($_SESSION['afterActionMessage']) ) {
                     $messageBoxCssClass = "";
-                    $message =  "<BR>".$_SESSION['afterActionMessage']."<BR>";
+                    $message =  $_SESSION['afterActionMessage'];
                     unset($_SESSION['afterActionMessage']);
             }
                     else {

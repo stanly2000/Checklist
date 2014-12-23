@@ -63,7 +63,7 @@ class Checklist implements IDbModels{
             return false;
         }
     }
-    //TODO save model to db
+
     public function save(){
         
         try{

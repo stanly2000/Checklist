@@ -122,4 +122,44 @@ class ChecklistController extends Controller
         }
     }
     
+    public function addTaskPost(){
+        // TODO check if unique in the list
+        
+        $returnData = [];
+        
+        $jsonData = json_decode($_POST['jsonData'],true);      
+        $model = $this->model('Task');
+        $model->TaskID = $jsonData['TaskID'];
+        $model->ChecklistID = $jsonData['ChecklistID'];
+        $model->TaskName = $jsonData['TaskName'];
+        $model->TaskTime = null;
+        
+        if($model->save()){
+          $returnData['afterActionMessage'] = "Action Successfully Completed";
+        }
+        else{
+            $returnData['afterActionMessage'] = "Action failded, DB Problem..";
+        }
+            
+        
+        if ($jsonData['OptName'] != null && $jsonData['OptValue'] != null ){
+            $model->addParams($jsonData['OptName'], $jsonData['OptValue']);
+        }
+        
+        $returnData['id'] = $model->TaskID;
+        echo json_encode($returnData);
+    }
+    public function removeTaskPost(){
+        //validate
+        //print_r($_POST);
+        $model = $this->model('Task');
+        if ($model->remove($_POST['taskID']))
+        {
+            $data['afterActionMessage'] = "Action Successfully Completed";
+        }
+        else{
+            $data['afterActionMessage'] = "Action failded, DB Problem..";
+        }
+        echo json_encode($data);
+    }
 }
