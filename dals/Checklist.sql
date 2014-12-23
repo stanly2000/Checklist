@@ -247,7 +247,9 @@ AssignTime    datetime
                tbGroup.GroupID, GroupName
         from   tbUserGroup, tbUser, tbGroup
         where  tbUser.UserID = tbUserGroup.UserID and
-	       tbUserGroup.GroupID = tbGroup.GroupID;
+	       
+
+tbUserGroup.GroupID = tbGroup.GroupID;
     END //
  DELIMITER ;
 
@@ -682,3 +684,18 @@ BEGIN
                   'delete', now());
 END//
 DELIMITER ;
+
+
+-- log table for tbTaskProperties
+create table log_tbTaskProperties(
+LogID                 int primary key auto_increment,
+TaskPropertyID        int unsigned not null,
+old_PropertyName      varchar(60) null,
+new_PropertyName      varchar(60) null,
+old_PropertyAttribute varchar(120) null,
+new_PropertyAttribute varchar(120) null,
+old_PropertyValue     decimal(10,2) null,
+new_PropertyValue     decimal(10,2) null,        
+ActionType  ENUM  ('insert','update','delete') not null,
+TimeStamp         timestamp not null           
+);
