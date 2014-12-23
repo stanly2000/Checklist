@@ -8,7 +8,7 @@
           <input type="hidden" name="id" value="<?php echo $data['checklist']->ChecklistID;?>" >
           
   <div class="form-group">
-    <label for="title">Checklist Title</label>
+    <label for="title"></label>
     <input type="text" class="form-control" id="title" name="title" value="<?php echo $data['checklist']->ChecklistName ?>">
   </div>
 
