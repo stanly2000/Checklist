@@ -2,12 +2,13 @@
 ?>
 <table class="table table-striped table-hover">
     <thead>
-        <tr>
+        <tr class="success">
             <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Security Level</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>

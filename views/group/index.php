@@ -4,14 +4,17 @@
         <title>Group Information</title>
     </head>
     <body>
-        <table>
-            <thead>
-            <th>ID&nbsp;</th>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="success">
+            <th>Group ID</th>
             <th>Group Name</th>
-            </thead>
-            <tbod>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
                 <?php foreach($data['groups'] as $g) { ?>
-                <tr>
+                <tr >
                     <td><?php echo $g['GroupID']; ?></td>
                     <td><?php echo $g['GroupName']; ?></td>
                     <td>
@@ -21,7 +24,7 @@
                     </td>
                 </tr>
                 <?php } ?>
-            </tbod>
+            </tbody>
         </table>
     </body>
 </html>
