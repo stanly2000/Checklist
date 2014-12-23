@@ -734,3 +734,20 @@ BEGIN
                   old.PropertyValue, new.PropertyValue,
                   'update', now());
 END//
+
+CREATE TRIGGER ad_tbTaskProperties -- after delete for tbTaskProperties
+       AFTER DELETE ON tbTaskProperties
+                  FOR EACH ROW
+BEGIN
+       INSERT INTO log_tbTaskProperties
+                 (TaskPropertyID, old_PropertyName, new_PropertyName,
+                 old_PropertyAttribute, new_PropertyAttribute,
+                 old_PropertyValue, new_PropertyValue, 
+                 ActionType, TimeStamp) values
+
+                 (old.TaskPropertyID, old.PropertyName, null, 
+                  old.PropertyAttribute, null,
+                  old.PropertyValue, null,
+                  'delete', now());
+END//
+DELIMITER ;
