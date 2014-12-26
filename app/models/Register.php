@@ -1,5 +1,5 @@
 <?php
-require_once '../utilities/Hash.php';
+require_once APP.'/utilities/Hash.php';
 class Register { 
      private $db;
      public $FirstName;

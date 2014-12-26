@@ -10,7 +10,7 @@ class TaskController extends Controller
     }
     public function edit($id = null) {
         
-        $this->render(__CLASS__,__FUNCTION__,'checklist/edit',['tasks'=>$model ],'editpost' ); 
+        //$this->render(__CLASS__,__FUNCTION__,'checklist/edit',['tasks'=>$model ],'editpost' ); 
         
     }
     public function editpost() {

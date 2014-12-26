@@ -1,6 +1,6 @@
 <?php
 require_once 'IDbModels.php';
-require_once '../utilities/DebugLogger.php';
+require_once APP.'/utilities/DebugLogger.php';
 class Checklist implements IDbModels{
     private $db;
     public $ChecklistID;

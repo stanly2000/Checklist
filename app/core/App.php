@@ -24,12 +24,12 @@ class App
 
         if (!$this->url_controller) {
 
-            require ROOT . 'controllers/homeController.php';
+            require APP . 'controllers/homeController.php';
             $page = new HomeController();
             $page->index();
 
-        } elseif (file_exists(ROOT . 'controllers/' . $this->url_controller . '.php')) {
-            require ROOT . 'controllers/' . $this->url_controller . '.php';
+        } elseif (file_exists(APP . 'controllers/' . $this->url_controller . '.php')) {
+            require APP . 'controllers/' . $this->url_controller . '.php';
             $this->url_controller = new $this->url_controller();
 
 

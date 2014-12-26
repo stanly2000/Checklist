@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT.'models/HomeTest.php';
+require_once APP.'models/HomeTest.php';
 class HomeController extends Controller
 {
 

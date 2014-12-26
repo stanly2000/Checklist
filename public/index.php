@@ -1,7 +1,7 @@
 <?php
 define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 // for now it the same that the ROOT one in the future this better be separated
-define('APP', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+define('APP', dirname(__DIR__) . DIRECTORY_SEPARATOR .'app' . DIRECTORY_SEPARATOR);
 
 
 define ( 'RESOURCE' ,'http://' .$_SERVER['HTTP_HOST']. str_replace($_SERVER['DOCUMENT_ROOT'], '',str_replace('\\', '/', dirname(__DIR__).'/public')));
@@ -13,6 +13,6 @@ ini_set("display_errors", 1);
 
 
 
-require_once ROOT.'core/appStart.php';
+require_once APP.'core/appStart.php';
 
 $app = new App;
