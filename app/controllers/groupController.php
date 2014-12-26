@@ -1,45 +1,48 @@
 <?php
-class groupController extends Controller {
-    
-    public function index() {
-        
-        if (!empty($_SESSION)) {
+
+class groupController extends Controller
+{
+
+    public function index()
+    {
+        if (! empty($_SESSION)) {
             
-         $model = $this->model('Group');
-         $groups = $model->GetGroups();
-         $this->render( __CLASS__,__FUNCTION__,'group/index',['groups'=>$groups]);
-         
-        } 
-        else{
+            $model = $this->model('Group');
+            $groups = $model->GetGroups();
+            $this->render(__CLASS__, __FUNCTION__, 'group/index', [
+                'groups' => $groups
+            ]);
+        } else {
             $this->redirect('home');
         }
     }
-    public function view($id) {
-        
+
+    public function view($id)
+    {
         $model = $this->model('Group');
         $view = $model->GetView($id);
-        $this->render( __CLASS__,__FUNCTION__,'group/view',['view'=>$view]);
-        
+        $this->render(__CLASS__, __FUNCTION__, 'group/view', [
+            'view' => $view
+        ]);
     }
-    public function update($id) {
-        
+
+    public function update($id)
+    {
         $model = $this->model('Group');
         $update = $model->GetView($id);
-        $this->render( __CLASS__,__FUNCTION__,'group/update',['update'=>$update],'UpdateGroup');
-        
+        $this->render(__CLASS__, __FUNCTION__, 'group/update', [
+            'update' => $update
+        ], 'UpdateGroup');
     }
-    public function UpdateGroup() {
-        
+
+    public function UpdateGroup()
+    {
         $model = $this->model('Group');
         $groupupdate = $model->UpdateGroup($_POST['UGName']);
         if ($groupupdate != null) {
             $this->redirect('group/index');
-        }
-        else{
+        } else {
             echo "name not updated";
         }
-        
     }
-    
-    
 }

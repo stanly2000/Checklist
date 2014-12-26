@@ -1,33 +1,43 @@
 <?php
-class Group {
-   
+
+class Group
+{
+
     private $db;
+
     public $GroupID;
+
     public $GroupName;
-    
-    function __construct($db) {
+
+    function __construct($db)
+    {
         $this->db = $db;
     }
-    public function GetGroups() {
-        
+
+    public function GetGroups()
+    {
         $stmt = $this->db->prepare("CALL spGetUserGroup()");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
-        
     }
-    public function GetView($id) {
-        
+
+    public function GetView($id)
+    {
         $stmt = $this->db->prepare('select * from tbGroup where GroupID = ?');
-        $stmt->execute(array($id));
+        $stmt->execute(array(
+            $id
+        ));
         $rows = $stmt->fetchall(PDO::FETCH_OBJ);
         return $rows;
     }
-    public function UpdateGroup($groupname) {
-        
+
+    public function UpdateGroup($groupname)
+    {
         $stmt = $this->db->prepare('CALL spUpdateUserGroup (?)');
-        $stmt->execute(array($groupname));
+        $stmt->execute(array(
+            $groupname
+        ));
         return $stmt;
     }
-    
 }
