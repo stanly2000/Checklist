@@ -17,17 +17,17 @@
             </thead>
             
             <tbody>
-     <?php foreach ($data['assignedChecklist'] as $assignedChecklist)  { ?>
+     <?php foreach ($data['assignedChecklist'] as $aclist)  { ?>
        <tr>
-           <td><?php echo $assignedChecklist->AssignID; ?></td>
-           <td><?php echo $assignedChecklist->GroupName; ?></td>
-           <td><?php echo $assignedChecklist->ChecklistID; ?></td>
-           <td><?php echo $assignedChecklist->ChecklistName; ?></td>
-           <td><?php echo $assignedChecklist->AssignTime; ?></td>
-           <td><a href="<?php echo RESOURCE; ?>/assignedChecklist/view/<?php echo $assignedChecklist->AssignID ?>" >view</a>&nbsp;
-           <a href="<?php echo RESOURCE; ?>/assignedChecklist/update/<?php echo $assignedChecklist->AssignID ?>" >update</a>&nbsp;
+           <td><?php echo $aclist->AssignID; ?></td>
+           <td><?php echo $aclist->GroupName; ?></td>
+           <td><?php echo $aclist->ChecklistID; ?></td>
+           <td><?php echo $aclist->ChecklistName; ?></td>
+           <td><?php echo $aclist->AssignTime; ?></td>
+           <td><a href="<?php echo RESOURCE; ?>/assignedChecklist/view/<?php echo $aclist->AssignID ?>" >view</a>&nbsp;
+           <a href="<?php echo RESOURCE; ?>/assignedChecklist/update/<?php echo $aclist->AssignID ?>" >update</a>&nbsp;
            
-           <a id="dlink_<?php echo $assignedChecklist->AssignID ?>" onclick="return confirm('Are you sure you want to Delete Assigned Checklist?');" href="#" class='delLink' >delete</a>
+           <a id="dlink_<?php echo $aclist->AssignID ?>" onclick="return confirm('Are you sure you want to Delete Assigned Checklist?');" href="#" class='delLink' >delete</a>
 
        </tr>
      <?php } ?>
