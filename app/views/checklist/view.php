@@ -12,25 +12,30 @@
                 <tr>
                     <th>Task Name</th>
 
-                    <th>Optional  Task Properties</th>
+                    <th>Task Property (optional)</th>
+                    <th>Task Property Value (optional)</th>
                     <th >Actions &nbsp;&nbsp;&nbsp;<a class="font20" id="btnAddTask" href="#">Add New </a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr id="trNewEdit" class="unseen">
+                    <input type="hidden" name="taskIdEdit" id="taskIdEdit">
                     <td id="tName"><input type="text" id="txtName" ></td>
                     
-                    <td id="tOptions">
-                        Attribute (optional):<input type="text" id="txtOptName" >&nbsp;<br><br>Value (optional): <input type="text" id="txtOptValue" >
+                    <td >
+                       <input type="text" id="txtOptName" >
+                    </td>
+                    <td >
+                       <input type="text" id="txtOptValue" >
                     </td>
                     <td id="tActions" style="white-space: nowrap;"><button id="btnSave" class="btn btn-primary" >Save</button>&nbsp;&nbsp;&nbsp;
                             <button id="btnCancelEdit" class="btn btn-primary" >Cancel</button></td>
                 </tr>
      <?php foreach ($data['checklist']->Tasks as $task)  { ?>
        <tr id="trTask_<?php echo $task->TaskID; ?>">
-           <td><?php echo $task->TaskName; ?></td>
-
-           }?></td>
+           <td class="tName"><?php echo $task->TaskName; ?></td>
+           <td class="tPropName"><?php echo $task->PropertyName; ?></td>
+           <td class="tPropVal"><?php  if ($task->TaskName == ''){ echo $task->PropertyAttribute;} else { echo $task->PropertyValue; } ?></td>
            <td>
            <a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $task->TaskID ?>" >view</a>&nbsp;
            <a id="uplink_<?php echo $task->TaskID ?>" class="editTask" href="#" >update</a>&nbsp;
@@ -59,17 +64,21 @@
         });
         
         $(document).on('click', '.editTask', function () {
+        	hideErrorMessageBoxes();
+        	
             tmp = $(this).attr('id').split('_');
+        	
              taskID = tmp[1];
-             TrToUpdateID = 'trTask_' + taskID;
-             console.log(this);
-             // console.log($('#'+TrToUpdateID ));
-             //$("table tr:eq(5) td")
-             taskName = $('#' + TrToUpdateID + ":nth-child(1)").text();
-             alert($('#' + TrToUpdateID + ":nth-child(0)").text());
-             console.log($('#' + TrToUpdateID + ":nth-child(1)"));
-            // txtName txtOptName txtOptValue
-            // $('#txtName') = html();
+
+             var currTR = $('#trTask_' + taskID);
+
+             /* fill the edit form with selected task values */           
+             $('#txtName').val($(currTR).find("td.tName").html().trim());
+             $('#txtOptName').val($(currTR).find("td.tPropName").html().trim());
+             $('#txtOptValue').val($(currTR).find("td.tPropVal").html().trim());
+             $('#taskIdEdit').val(taskID);
+             $('#trNewEdit').removeClass("unseen");
+
             
         });
         $(document).on('click', '.removeTask', function () {
@@ -99,13 +108,19 @@
         });
         
         $('#btnSave').on('click', function(){
+            var TaskID = -1;
+            if ($('#taskIdEdit').val() > 0)
+            	TaskID = $('#taskIdEdit').val();
+
                var tmpData = {
-                "TaskID": -1,
+                "TaskID": TaskID,
                 "TaskName": $('#txtName').val(),
                 "ChecklistID": <?php echo $data['checklist']->ChecklistID; ?>,
                 "OptName": $('#txtOptName').val(),
                 "OptValue": $('#txtOptValue').val()
             };
+
+               console.log(tmpData);
             
             $.ajax({
                     url : _POST_URL,
@@ -114,20 +129,29 @@
                     success: function(data, textStatus, jqXHR)
                     {
                         res = JSON.parse(data);
-                        var taskID = res['id'];
-                       // alert(taskID);
-                        trID = 'dlink_' + taskID;
+                        var newID = res['id'];
+                       if ( TaskID == -1){
+                        trID = 'dlink_' + newID;
                         optParams = '';
                         if ($('#txtOptName').val() != ''){
                             optParams = $('#txtOptName').val()+ ' : ' + $('#txtOptValue').val();
                         }
-                        buttonsTD = '<a href="' + _PATH_ + '/checklist/view/' + taskID + '" >view</a>&nbsp&nbsp' +
-                                    '<a class="" href="' + _PATH_ + '/checklist/update/' + taskID + '" >update</a>&nbsp&nbsp;' +
+                        buttonsTD = '<a href="' + _PATH_ + '/checklist/view/' + newID + '" >view</a>&nbsp&nbsp' +
+                                    '<a class="" href="' + _PATH_ + '/checklist/update/' + newID + '" >update</a>&nbsp&nbsp;' +
                                     '<a id="' + trID + '" href="#" class="removeTask" >delete</a>' ;
                             
-                        newAdded = '<tr id="trTask_' + taskID + '"><td>' + $('#txtName').val() + '</td><td>' + optParams + '</td><td>' + buttonsTD + '</td></tr>';
+                        newAdded = '<tr id="trTask_' + newID + '"><td>' + $('#txtName').val() + '</td><td>' + $('#txtOptName').val() + '</td><td>' + $('#txtOptValue').val() + '</td><td>' + buttonsTD + '</td></tr>';
                         
                          $("tr:last").after(newAdded);
+                       }
+                       else{
+                    	   var currTR = $('#trTask_' + taskID);  
+                    	   $(currTR).find("td.tName").html($('#txtName').val());
+                    	   $(currTR).find("td.tPropName").html($('#txtOptName').val());
+                    	   $(currTR).find("td.tPropVal").html($('#txtOptValue').val());
+
+                    	   $(currTR).removeClass("unseen");
+                       }
                          
                          clearEditForm();
                         $('#trNewEdit').addClass("unseen");

@@ -130,6 +130,11 @@ class ChecklistController extends Controller
         
         $jsonData = json_decode($_POST['jsonData'], true);
         $model = $this->model('Task');
+        
+        $taskID = $jsonData['TaskID'];
+        if ($taskID > 0){
+            $model->load($taskID);
+        }
         $model->TaskID = $jsonData['TaskID'];
         $model->ChecklistID = $jsonData['ChecklistID'];
         $model->TaskName = $jsonData['TaskName'];
@@ -142,6 +147,7 @@ class ChecklistController extends Controller
         }
         
         if ($jsonData['OptName'] != null && $jsonData['OptValue'] != null) {
+            DebugLogger::log('kkk');
             $model->addParams($jsonData['OptName'], $jsonData['OptValue']);
         }
         

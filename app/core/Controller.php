@@ -15,7 +15,10 @@ class Controller
 
     private function db_connect()
     {
-        return new PDO('mysql:host=localhost;dbname=Checklist;charset=utf8', 'root', '');
+        $pdo = new PDO('mysql:host=localhost;dbname=Checklist;charset=utf8', 'root', '');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        return $pdo;
     }
 
     public function model($model)

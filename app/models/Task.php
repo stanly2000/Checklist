@@ -93,24 +93,26 @@ class Task
     public function save()
     {
         try {
-            if ($this->TaskID && $this->TaskID > 0) {
-                $stmt = $this->db->prepare("CALL spUpdateTask (:p_TaskName,p_ChecklistID,p_TaskTime ) ");
-                $stmt->bindValue(':p_TaskName', $this->TaskID, PDO::PARAM_STR);
+            
+            if ($this->TaskID && $this->TaskID > 0) {               
+                $stmt = $this->db->prepare("CALL spUpdateTask (:p_TaskID,:p_TaskName,:p_ChecklistID,:p_TaskTime ) ");
+                $stmt->bindValue(':p_TaskID', $this->TaskID, PDO::PARAM_INT);
+                $stmt->bindValue(':p_TaskName', $this->TaskName, PDO::PARAM_STR);
                 $stmt->bindValue(':p_ChecklistID', $this->ChecklistID, PDO::PARAM_INT);
                 $stmt->bindValue(':p_TaskTime', $this->TaskTime, PDO::PARAM_STR);
                 $stmt->execute();
-            } else {
-                DebugLogger::log('HERERERER');
+            } else {              
                 $stmt = $this->db->prepare("CALL spInsertTask (:p_TaskName, :p_ChecklistID, :p_TaskTime ) ");
                 $stmt->bindValue(':p_TaskName', $this->TaskName, PDO::PARAM_STR);
                 $stmt->bindValue(':p_ChecklistID', $this->ChecklistID, PDO::PARAM_INT);
                 $stmt->bindValue(':p_TaskTime', $this->TaskName, PDO::PARAM_STR);
-                $stmt->execute(); // PDO::lastInsertId()
+                $stmt->execute();
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
                 $this->TaskID = $res['lastInsertID'];
             }
             return true;
         } catch (PDOException $ex) {
+            DebugLogger::log($ex->getMessage());
             return false;
         }
     }
@@ -123,8 +125,8 @@ class Task
     public function addParams($param, $value)
     {
         // so far task can have only one param
-        if (is_numeric($value));
-        
+        //if (is_numeric($value));
+        DebugLogger::log($param.' - '. $value . ' - '.$this->TaskID);
         // check if params exist
         $check = $this->db->prepare("SELECT * FROM tbTaskProperties WHERE TaskPropertyID = ?");
         $check->execute(array(
@@ -142,20 +144,21 @@ class Task
             // $stmt = $this->db->prepare("CALL spInsertTask (:p_TaskName, :p_ChecklistID, :p_TaskTime ) ");
             if (is_numeric($value)) {
                 $stmt = $this->db->prepare("INSERT INTO tbTaskProperties (TaskID, PropertyName, PropertyValue)VALUES(:p_TaskID, :p_PropertyName, :p_PropertyValue ) ");
-                $stmt->bindValue(':p_PropertyValue', $value, PDO::PARAM_STR);
+                $stmt->bindValue(':p_PropertyValue', $value, PDO::PARAM_INT);
             } else {
                 $stmt = $this->db->prepare("INSERT INTO tbTaskProperties (TaskID, PropertyName, PropertyAttribute)VALUES(:p_TaskID, :p_PropertyName, :p_PropertyAttribute ) ");
                 $stmt->bindValue(':p_PropertyAttribute', $value, PDO::PARAM_STR);
             }
-            $stmt->bindValue(':p_TaskID', $this->TaskID, PDO::PARAM_STR);
-            $stmt->bindValue(':p_PropertyName', $param, PDO::PARAM_INT);
+            $stmt->bindValue(':p_TaskID', $this->TaskID,  PDO::PARAM_INT);
+            $stmt->bindValue(':p_PropertyName', $param, PDO::PARAM_STR);  
             
             $stmt->execute();
             
             return true;
         } catch (PDOException $ex) {
-            echo $ex;
-            die();
+            DebugLogger::log($ex->getMessage());
+            ///echo $ex;
+            //die();
             return false;
         }
     }
