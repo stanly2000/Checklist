@@ -4,9 +4,9 @@
    
     <div class="col-lg-3">&nbsp;</div>
     <div class="col-lg-6">
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
-                <tr>
+                <tr class="success">
                     <th>Assigned ID</th>
                     <th>Group Name</th>
                     <th>Checklist ID</th>
