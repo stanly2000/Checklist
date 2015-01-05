@@ -158,9 +158,10 @@ class ChecklistController extends Controller
     public function removeTaskPost()
     {
         // validate
-        // print_r($_POST);
+        $jsonData = json_decode($_POST['jsonData'], true);        
+        $taskID = $jsonData['taskID'];
         $model = $this->model('Task');
-        if ($model->remove($_POST['taskID'])) {
+        if ($model->remove($taskID)) {
             $data['actionCompleted'] = true;
             $data['afterActionMessage'] = "Action Successfully Completed";
         } else {

@@ -70,6 +70,7 @@ class Task
             $stmt->execute();
             return true;
         } catch (PDOException $ex) {
+            DebugLogger::log($ex->getMessage());
             return false;
         }
     }
@@ -94,14 +95,14 @@ class Task
     {
         try {
             
-            if ($this->TaskID && $this->TaskID > 0) {               
+            if ($this->TaskID && $this->TaskID > 0) {
                 $stmt = $this->db->prepare("CALL spUpdateTask (:p_TaskID,:p_TaskName,:p_ChecklistID,:p_TaskTime ) ");
                 $stmt->bindValue(':p_TaskID', $this->TaskID, PDO::PARAM_INT);
                 $stmt->bindValue(':p_TaskName', $this->TaskName, PDO::PARAM_STR);
                 $stmt->bindValue(':p_ChecklistID', $this->ChecklistID, PDO::PARAM_INT);
                 $stmt->bindValue(':p_TaskTime', $this->TaskTime, PDO::PARAM_STR);
                 $stmt->execute();
-            } else {              
+            } else {
                 $stmt = $this->db->prepare("CALL spInsertTask (:p_TaskName, :p_ChecklistID, :p_TaskTime ) ");
                 $stmt->bindValue(':p_TaskName', $this->TaskName, PDO::PARAM_STR);
                 $stmt->bindValue(':p_ChecklistID', $this->ChecklistID, PDO::PARAM_INT);
@@ -125,40 +126,43 @@ class Task
     public function addParams($param, $value)
     {
         // so far task can have only one param
-        //if (is_numeric($value));
-        DebugLogger::log($param.' - '. $value . ' - '.$this->TaskID);
+        // if (is_numeric($value));
+        // DebugLogger::log($param.' - '. $value . ' - '.$this->TaskID);
         // check if params exist
-        $check = $this->db->prepare("SELECT * FROM tbTaskProperties WHERE TaskPropertyID = ?");
+        $check = $this->db->prepare("SELECT * FROM tbTaskProperties WHERE TaskID = ?");
         $check->execute(array(
             $this->TaskID
         ));
         $row_count = $check->rowCount();
         if ($row_count > 0) {
-            $delParam = $this->db->prepare("DELETE FROM tbTaskProperties WHERE TaskPropertyID = ?");
+            $delParam = $this->db->prepare("DELETE FROM tbTaskProperties WHERE TaskID = ?");
             $delParam->execute(array(
                 $this->TaskID
             ));
         }
         
+        $propAttribute = '';
+        $propValue = 0;
+        if (is_numeric($value)) {
+            $propValue = $value;
+        } else {
+            $propAttribute = $value;
+        }
+        
         try {
-            // $stmt = $this->db->prepare("CALL spInsertTask (:p_TaskName, :p_ChecklistID, :p_TaskTime ) ");
-            if (is_numeric($value)) {
-                $stmt = $this->db->prepare("INSERT INTO tbTaskProperties (TaskID, PropertyName, PropertyValue)VALUES(:p_TaskID, :p_PropertyName, :p_PropertyValue ) ");
-                $stmt->bindValue(':p_PropertyValue', $value, PDO::PARAM_INT);
-            } else {
-                $stmt = $this->db->prepare("INSERT INTO tbTaskProperties (TaskID, PropertyName, PropertyAttribute)VALUES(:p_TaskID, :p_PropertyName, :p_PropertyAttribute ) ");
-                $stmt->bindValue(':p_PropertyAttribute', $value, PDO::PARAM_STR);
-            }
-            $stmt->bindValue(':p_TaskID', $this->TaskID,  PDO::PARAM_INT);
-            $stmt->bindValue(':p_PropertyName', $param, PDO::PARAM_STR);  
+            $stmt = $this->db->prepare("CALL spInsertTaskProperties (:p_TaskID, :p_PropertyName, :p_PropertyAttribute, :p_PropertyValue ) ");
+            $stmt->bindValue(':p_PropertyValue', $propValue, PDO::PARAM_INT);
+            $stmt->bindValue(':p_PropertyAttribute', $propAttribute, PDO::PARAM_STR);
+            $stmt->bindValue(':p_TaskID', $this->TaskID, PDO::PARAM_INT);
+            $stmt->bindValue(':p_PropertyName', $param, PDO::PARAM_STR);
             
             $stmt->execute();
             
             return true;
         } catch (PDOException $ex) {
             DebugLogger::log($ex->getMessage());
-            ///echo $ex;
-            //die();
+            // /echo $ex;
+            // die();
             return false;
         }
     }

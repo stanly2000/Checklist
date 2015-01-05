@@ -35,7 +35,7 @@
        <tr id="trTask_<?php echo $task->TaskID; ?>">
            <td class="tName"><?php echo $task->TaskName; ?></td>
            <td class="tPropName"><?php echo $task->PropertyName; ?></td>
-           <td class="tPropVal"><?php  if ($task->TaskName == ''){ echo $task->PropertyAttribute;} else { echo $task->PropertyValue; } ?></td>
+           <td class="tPropVal"><?php  if ($task->PropertyAttribute != ''){ echo $task->PropertyAttribute;} else { echo $task->PropertyValue; } ?></td>
            <td>
            <a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $task->TaskID ?>" >view</a>&nbsp;
            <a id="uplink_<?php echo $task->TaskID ?>" class="editTask" href="#" >update</a>&nbsp;
@@ -86,10 +86,12 @@
             // promt yes /no?
             tmp = $(this).attr('id').split('_');
              idToDel = tmp[1];
+             var tmpData = {'taskID':idToDel};
             $.ajax({
                 url : _POST_URL,
                 type: "POST",
-                data : { cntr: "checklist", actn:"removeTaskPost" ,taskID: idToDel},
+                ///data : { cntr: "checklist", actn:"addTaskPost" ,jsonData: JSON.stringify(tmpData)},
+                data : { cntr: "checklist", actn:"removeTaskPost" ,jsonData: JSON.stringify(tmpData)},
                 success: function(data, textStatus, jqXHR)
                 {
                     console.log(data);
