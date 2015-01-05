@@ -1,8 +1,89 @@
 <?php
+require_once 'IDbModels.php';
+require_once APP . '/utilities/DebugLogger.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class AssignedChecklist implements IDbModels
+{
+    private $db;
+     
+    public $AssignID;
+
+    public $ChecklistID;
+
+    public $ChecklistName;
+    
+    public $GroupID;
+    
+    public $GroupName;
+    
+    public $AssignTime;
+
+    public $Tasks = [];
+
+    public $validationRules = [];
+    
+     function __construct($db)
+    {
+        $this->db = $db;
+        $this->validationRules = [
+            'title' => [
+                'notEmpty',
+                'lettersAndNumbers'
+            ],
+            'id' => [
+                'notEmpty',
+                'isInteger'
+            ]
+        ];
+    }
+    
+     public function load($id)
+    {
+        $stmt = $this->db->prepare("CALL spGetAssignedChecklists");
+        $stmt->execute(array(
+            $id
+        ));
+        $res = $stmt->fetch(PDO::FETCH_OBJ);
+        $this->AssignID = $res->AssignID;
+        $this->GroupName = $res->GroupName;
+        $this->ChecklistID = $res->ChecklistID;
+        $this->ChecklistName = $res->ChecklistName;
+        $this->AssignTime = $res->AssignTime;
+        if ($this->AssignID == null)
+        {
+            return FALSE;
+            
+        }
+        else
+        {
+            return true;
+            
+        }
+    }
+    
+     public function get($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tbAssignChecklist WHERE AssignID=?");
+        $stmt->execute(array(
+            $id
+        ));
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function getAll()
+    {
+        $stmt = $this->db->prepare("CALL spGetAssignedChecklists");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function remove($id) {
+        
+    }
+
+    public function save() {
+        
+    }
+
+}
 
