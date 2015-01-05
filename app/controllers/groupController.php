@@ -21,6 +21,8 @@ class groupController extends Controller
     {
         $model = $this->model('Group');
         $view = $model->GetView($id);
+     //print_r($view);
+     //die();
         $this->render(__CLASS__, __FUNCTION__, 'group/view', [
             'view' => $view
         ]);

@@ -24,11 +24,11 @@ class Group
 
     public function GetView($id)
     {
-        $stmt = $this->db->prepare('select * from tbGroup where GroupID = ?');
+        $stmt = $this->db->prepare('CALL spGetUserGroupByID(?)');
         $stmt->execute(array(
             $id
         ));
-        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
+        $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
         return $rows;
     }
 
