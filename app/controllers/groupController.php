@@ -41,4 +41,16 @@ class groupController extends Controller
         $groupupdate = $model->UpdateGroup($_POST['GroupID'],$_POST['UGName']);
         $this->redirect('group/index');
     }
+    public function create() {
+        
+        $this->render(__CLASS__, __FUNCTION__, 'group/create', null, 'CreateGroup');
+        
+    }
+    public function CreateGroup() {
+        
+        $model=  $this->model('Group');
+        $groupcreate = $model->CreateGroup($_POST['groupname']);
+        $this->redirect('group/index');
+        
+    }
 }

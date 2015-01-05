@@ -16,7 +16,7 @@ class Group
 
     public function GetGroups()
     {
-        $stmt = $this->db->prepare("CALL spGetUserGroup()");
+        $stmt = $this->db->prepare("SELECT * FROM Checklist.tbGroup;");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
@@ -40,5 +40,13 @@ class Group
         ));
         $rows = $stmt->fetchall(PDO::FETCH_OBJ);
         return $rows;
+    }
+    public function CreateGroup($groupname) {
+        
+        $stmt = $this->db->prepare('CALL spInsertGroup(?)');
+        $stmt->execute(array($groupname));
+        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
+        return $rows;
+        
     }
 }

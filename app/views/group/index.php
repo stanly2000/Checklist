@@ -4,6 +4,7 @@
         <title>Group Information</title>
     </head>
     <body>
+        <a href="<?PHP echo RESOURCE; ?>/group/create/">Create New Group</a>
 <table class="table table-striped table-hover">
     <thead>
         <tr class="success">
