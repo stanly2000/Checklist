@@ -378,8 +378,10 @@ DELIMITER //
  p_TaskID int
  )
     begin
-		 delete from tbTask
-         where  TaskID = p_TaskID;
+           delete from tbTaskProperties
+	          where TaskID = p_TaskID;
+           delete from tbTask
+                  where  TaskID = p_TaskID;
     END //
  DELIMITER ;
 
