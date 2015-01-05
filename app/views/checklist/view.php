@@ -7,6 +7,7 @@
    
     <div class="col-lg-2">&nbsp;</div>
     <div class="col-lg-8">
+    <h3>Tasks For   <u><?php echo $data['checklist']->ChecklistName?></u></h3><br>
         <table class="table">
             <thead>
                 <tr>
@@ -37,7 +38,7 @@
            <td class="tPropName"><?php echo $task->PropertyName; ?></td>
            <td class="tPropVal"><?php  if ($task->PropertyAttribute != ''){ echo $task->PropertyAttribute;} else { echo $task->PropertyValue; } ?></td>
            <td>
-           <a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $task->TaskID ?>" >view</a>&nbsp;
+           
            <a id="uplink_<?php echo $task->TaskID ?>" class="editTask" href="#" >update</a>&nbsp;
            <a id="dlink_<?php echo $task->TaskID ?>" href="#" class='removeTask' >delete</a>
 
@@ -71,6 +72,7 @@
              taskID = tmp[1];
 
              var currTR = $('#trTask_' + taskID);
+             //console.log(currTR);
 
              /* fill the edit form with selected task values */           
              $('#txtName').val($(currTR).find("td.tName").html().trim());
@@ -84,6 +86,12 @@
         $(document).on('click', '.removeTask', function () {
         //$('.removeTask').on('click', function(){
             // promt yes /no?
+
+        	clearEditForm();
+            $('#trNewEdit').addClass("unseen");
+            hideErrorMessageBoxes();
+        	
+        	
             tmp = $(this).attr('id').split('_');
              idToDel = tmp[1];
              var tmpData = {'taskID':idToDel};
@@ -122,7 +130,7 @@
                 "OptValue": $('#txtOptValue').val()
             };
 
-               console.log(tmpData);
+            ///   console.log(tmpData);
             
             $.ajax({
                     url : _POST_URL,
@@ -131,15 +139,17 @@
                     success: function(data, textStatus, jqXHR)
                     {
                         res = JSON.parse(data);
-                        var newID = res['id'];
+                        console.log(res);
+                        var newID = res['TaskID'];
+                        console.log(newID);
                        if ( TaskID == -1){
                         trID = 'dlink_' + newID;
                         optParams = '';
                         if ($('#txtOptName').val() != ''){
                             optParams = $('#txtOptName').val()+ ' : ' + $('#txtOptValue').val();
                         }
-                        buttonsTD = '<a href="' + _PATH_ + '/checklist/view/' + newID + '" >view</a>&nbsp&nbsp' +
-                                    '<a class="" href="' + _PATH_ + '/checklist/update/' + newID + '" >update</a>&nbsp&nbsp;' +
+                        var updIdlink = 'uplink_' + newID;
+                        buttonsTD = ' <a id="' + updIdlink + '" class="editTask" href="#" >update</a>&nbsp;&nbsp;' +
                                     '<a id="' + trID + '" href="#" class="removeTask" >delete</a>' ;
                             
                         newAdded = '<tr id="trTask_' + newID + '"><td>' + $('#txtName').val() + '</td><td>' + $('#txtOptName').val() + '</td><td>' + $('#txtOptValue').val() + '</td><td>' + buttonsTD + '</td></tr>';

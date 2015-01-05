@@ -151,8 +151,8 @@ class ChecklistController extends Controller
             $model->addParams($jsonData['OptName'], $jsonData['OptValue']);
         }
         
-        $returnData['id'] = $model->TaskID;
-        echo json_encode($returnData);
+       // $returnData['id'] = $model->TaskID;
+        echo json_encode($model);
     }
 
     public function removeTaskPost()
