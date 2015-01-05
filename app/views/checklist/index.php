@@ -19,7 +19,7 @@
            <td><a href="<?php echo RESOURCE; ?>/checklist/view/<?php echo $clist->ChecklistID ?>" >view</a>&nbsp;
            <a href="<?php echo RESOURCE; ?>/checklist/update/<?php echo $clist->ChecklistID ?>" >update</a>&nbsp;
            
-           <a id="dlink_<?php echo $clist->ChecklistID ?>" onclick="return confirm('Are you sure you want to Delete selected Checklist?');" href="#" class='delLink' >delete</a>
+           <a id="dlink_<?php echo $clist->ChecklistID ?>"  href="#" class='delLink' >delete</a>
 
        </tr>
      <?php } ?>
@@ -35,12 +35,21 @@
 </div>
 
 <script>
+
+function confirm_delete() {
+	  return confirm('are you sure?');
+	}
+	
     $(document).ready(function(){
         $('.delLink').on('click',function(){
+
+       	 var answer = confirm("Are you sure you want to delete selected checklist?.")
+       	 if (answer){
              tmp = $(this).attr('id').split('_');
              idToDel = tmp[1];
              $('#id').val(idToDel);
              $('#rmform').submit();
+       	 }
         });
     });
     </script>
