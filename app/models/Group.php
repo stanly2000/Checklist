@@ -38,8 +38,7 @@ class Group
         $stmt->execute(array(
             $ID, $groupname
         ));
-        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
-        return $rows;
+        return $stmt;
     }
     public function CreateGroup($groupname) {
         
