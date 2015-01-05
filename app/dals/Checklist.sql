@@ -72,7 +72,7 @@ insert into tbTask(TaskName, ChecklistID, TaskTime) values
 ('Shift End',1, '2014-01-1');
 
 create table tbTaskProperties(
-TaskPropertyID    int primary key auto_increment,
+TaskPropertyID    int,
 TaskID            int,
                   FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
 PropertyName      varchar(60),
