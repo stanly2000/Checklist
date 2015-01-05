@@ -46,21 +46,22 @@ echo "This is View file which belonges to Controller Home Method Index";?>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
 
+            
             <!-- Carousel items -->
             <div class="carousel-inner">
                 <div class="active item">
                     <div class="carousel-caption">
-                        <img src="<?php echo RESOURCE ;?>/public/img/checklist1.jpg" alt=" ...">
+                        <link rel="icon" type="image/png" href="<?php echo RESOURCE ;?>/img/checklist1.jpg" alt=" ...">
                     </div>
                 </div>
                 <div class="item">
                     <div class="carousel-caption">
-                        <img src="<?php echo RESOURCE ;?>/public/img/checklist1.jpg" alt=" ...">
+                        <img src="<?php echo RESOURCE ;?>/img/checklist1.jpg" alt=" ...">
                     </div>
                 </div>
                 <div class="item">
                     <div class="carousel-caption">
-                        <img src="<?php echo RESOURCE ;?>/public/img/checklist1.jpg" alt=" ...">
+                        <img src="<?php echo RESOURCE ;?>/img/checklist1.jpg" alt=" ...">
                     </div>
                 </div>
             </div>
@@ -73,6 +74,6 @@ echo "This is View file which belonges to Controller Home Method Index";?>
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
-    </div>
+    </div>    
 </body>
 </html>
