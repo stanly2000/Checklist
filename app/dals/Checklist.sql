@@ -90,6 +90,7 @@ insert into tbStatus (StatusName) values
 ('Pending'),
 ('Completed');
 
+-- this table has all the assigned checklists
 create table tbAssignChecklist(
 AssignID      int primary key auto_increment,
 GroupID       int,
@@ -533,7 +534,8 @@ TimeStamp         timestamp not null
 
 -- stored proc to insert into log_tbUser
 DELIMITER //
-CREATE TRIGGER ai_tbUser -- after insert data for tbUser
+CREATE TRIGGER ai_tbUser 
+-- after insert data for tbUser
        AFTER INSERT ON tbUser
                   FOR EACH ROW
 BEGIN
@@ -549,7 +551,8 @@ BEGIN
                new.SecurityLevel, 'insert', now());
 END//
 
-CREATE TRIGGER au_tbUser --after update in tbUser
+CREATE TRIGGER au_tbUser 
+--  after update in tbUser
        AFTER UPDATE ON tbUser
                   FOR EACH ROW
 BEGIN 
@@ -565,7 +568,8 @@ BEGIN
                new.SecurityLevel, 'update', now());
 END//
 
-CREATE TRIGGER ad_tbUser  -- after delete
+CREATE TRIGGER ad_tbUser  
+-- after delete
         AFTER DELETE ON tbUser
                   FOR EACH ROW
 BEGIN 
