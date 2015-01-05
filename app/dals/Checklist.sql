@@ -67,6 +67,10 @@ ChecklistID   int,
 TaskTime      datetime
 );
 
+insert into tbTask(TaskName, ChecklistID, TaskTime) values
+('Shift Start',1, '2014-01-1'),
+('Shift End',1, '2014-01-1');
+
 create table tbTaskProperties(
 TaskPropertyID    int,
 TaskID            int,
