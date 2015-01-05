@@ -36,7 +36,7 @@ class Task
 
     public function getAll()
     {
-        $stmt = $this->db->prepare("CALL spGetTask");
+        $stmt = $this->db->prepare("CALL spGetTasks");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
