@@ -99,6 +99,12 @@ ChecklistID   int,
               FOREIGN KEY (ChecklistID) REFERENCES tbChecklist(ChecklistID),
 AssignTime    datetime
 );
+
+insert into tbAssignChecklist (GroupID, ChecklistID, AssignTime) values
+(1, 1,'2014-01-01'),
+(1, 2,'2014-01-02'),
+(2, 3,'2014-01-04'),
+(3, 4,'2014-01-05');
  
                 -- ***************STORED PROCEDURES*************** --
 -- NOTE:
@@ -507,10 +513,24 @@ END //
  p_AssignID int
  )
     begin
-		 delete from tbAssignChecklist
+               delete from tbAssignChecklist
          where AssignID = p_AssignID;
     END //
  DELIMITER ;
+
+-- this procedure gets all assigned checklists from tbAssignChecklist
+  DELIMITER //
+ CREATE PROCEDURE spGetAssignedChecklists(
+)
+   begin
+         select AssignID, GroupID, GroupName, ChecklistID, ChecklistName,
+                AssignTime
+         from tbAssignChecklist, tbChecklist, tbGroup
+         where tbGroup.GroupID = tbAssignChecklist.GroupID and
+               tbAssignChecklist.ChecklistID = tbChecklist.ChecklistID;
+   END //
+ DELIMITER;
+
  
 -- LOG Tables and Stored Procedures to enter trigger logs --
 
