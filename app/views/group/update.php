@@ -6,12 +6,7 @@
         <form method="post" action="<?php echo RESOURCE ;?>/group/UpdateGroup">
           <table>
             <?php foreach($data['update'] as $g) { ?>
-            <tr>
-                <td>ID: </td>
-                <td>
-                    <?php echo $g->GroupID ?>
-                </td>
-            </tr>
+              <input type="hidden" value="<?php echo $g->GroupID ?>" id="GroupID" name="GroupID"/>
             <tr>
                 <td>
                     Group name:&nbsp;
@@ -22,7 +17,7 @@
             </tr>
             <?php } ?>
         </table>
-            <input type="submit" name="UGbtn" />
+            <input type="submit" name="UGbtn" value="Back" onclick="document.location.href = 'http://localhost/checklist/public/group'"/>
             <input type="submit" value="Update" />
         </form>
     </body>

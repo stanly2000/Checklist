@@ -32,12 +32,13 @@ class Group
         return $rows;
     }
 
-    public function UpdateGroup($groupname)
+    public function UpdateGroup($ID, $groupname)
     {
-        $stmt = $this->db->prepare('CALL spUpdateUserGroup (?)');
+        $stmt = $this->db->prepare('CALL spUpdateGroup (?,?)');
         $stmt->execute(array(
-            $groupname
+            $ID, $groupname
         ));
-        return $stmt;
+        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
+        return $rows;
     }
 }

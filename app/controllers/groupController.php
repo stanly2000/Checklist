@@ -38,11 +38,7 @@ class groupController extends Controller
     public function UpdateGroup()
     {
         $model = $this->model('Group');
-        $groupupdate = $model->UpdateGroup($_POST['UGName']);
-        if ($groupupdate != null) {
-            $this->redirect('group/index');
-        } else {
-            echo "name not updated";
-        }
+        $groupupdate = $model->UpdateGroup($_POST['GroupID'],$_POST['UGName']);
+        $this->redirect('group/index');
     }
 }
