@@ -45,8 +45,13 @@ class Group
         
         $stmt = $this->db->prepare('CALL spInsertGroup(?)');
         $stmt->execute(array($groupname));
-        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
-        return $rows;
+        return $stmt;
         
+    }
+    public function DeleteGroup($id) {
+        
+        $stmt = $this->db->prepare('CALL spDeleteGroup (?)');
+        $stmt->execute(array($id));
+        return $stmt;
     }
 }

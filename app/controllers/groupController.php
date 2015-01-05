@@ -53,4 +53,18 @@ class groupController extends Controller
         $this->redirect('group/index');
         
     }
+    public function delete($id) {
+        $model = $this->model('Group');
+        $delete = $model->GetView($id);
+        $this->render(__CLASS__, __FUNCTION__, 'group/delete', [
+            'delete' => $delete
+        ], 'DeleteGroup');
+    }
+    public function DeleteGroup() {
+        
+        $model = $this->model('Group');
+        $groupdelete = $model->DeleteGroup($_POST['GroupID']);
+        $this->redirect('group/index');
+        
+    }
 }
