@@ -24,7 +24,7 @@
                     </td>
                 <?PHP } ?>
             </table>
-            <input type="submit" value="back" onclick="document.location.href='http://localhost/checklist/public/group'" />
+            <input type="button" value="back" onclick="document.location.href='<?php echo RESOURCE; ?>/group/index'" />
             <input type="submit" value="Delete" />
         </form>
     </body>

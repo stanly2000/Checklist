@@ -11,7 +11,7 @@
              </div>
             </div>
             
-            <input type="submit" value="Back" onclick="document.location.href='http://localhost/checklist/public/group'" class="btn btn-success" />
+            <input type="button" value="Back" onclick="document.location.href='<?php echo RESOURCE; ?>/group/index'" class="btn btn-success" />
             <input type="submit" value="Add New Group" class="btn btn-success"/>
         </form>
     </body>

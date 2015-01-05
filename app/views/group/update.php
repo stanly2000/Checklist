@@ -15,7 +15,7 @@
             </div>
             <?php } ?>
         </table>
-            <input type="submit" name="UGbtn" value="Back" onclick="document.location.href = 'http://localhost/checklist/public/group'" class="btn btn-success"/>
+            <input type="button" name="UGbtn" value="Back" onclick="document.location.href = '<?php echo RESOURCE; ?>/group/index'" class="btn btn-success"/>
             <input type="submit" value="Update" class="btn btn-success" />
         </form>
     </body>
