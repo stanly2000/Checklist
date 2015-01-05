@@ -523,8 +523,9 @@ END //
  CREATE PROCEDURE spGetAssignedChecklists(
 )
    begin
-         select AssignID, GroupID, GroupName, ChecklistID, ChecklistName,
-                AssignTime
+         select AssignID, tbAssignChecklist.GroupID,
+                GroupName, tbAssignChecklist.ChecklistID, 
+                ChecklistName,AssignTime
          from tbAssignChecklist, tbChecklist, tbGroup
          where tbGroup.GroupID = tbAssignChecklist.GroupID and
                tbAssignChecklist.ChecklistID = tbChecklist.ChecklistID;
