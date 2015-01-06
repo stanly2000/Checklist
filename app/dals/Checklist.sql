@@ -214,6 +214,8 @@ insert into tbAssignChecklist (GroupID, ChecklistID, AssignTime) values
  p_GroupID int
  )  
    BEGIN
+   delete from tbAssignChecklist
+          where GroupID = p_GroupID;
    delete from tbUserGroup
          where GroupID = p_GroupID;
    delete from tbGroup 
