@@ -2,8 +2,8 @@
 
 <div class="row">
    
-    <div class="col-lg-3">&nbsp;</div>
-    <div class="col-lg-6">
+    <div class="col-lg-4">&nbsp;</div>
+    <div class="col-lg-9">
         <table class="table table-striped table-hover">
             <thead>
                 <tr class="success">
@@ -12,7 +12,7 @@
                     <th>Checklist ID</th>
                     <th>Checklist Name</th>
                     <th>Date Assigned</th>
-                    <th>Actions (View, Update, Delete)</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             
@@ -24,8 +24,8 @@
            <td><?php echo $aclist->ChecklistID; ?></td>
            <td><?php echo $aclist->ChecklistName; ?></td>
            <td><?php echo $aclist->AssignTime; ?></td>
-           <td><a href="<?php echo RESOURCE; ?>/assignedChecklist/view/<?php echo $aclist->AssignID ?>" >view</a>&nbsp;
-           <a href="<?php echo RESOURCE; ?>/assignedChecklist/update/<?php echo $aclist->AssignID ?>" >update</a>&nbsp;
+           <td><a href="<?php echo RESOURCE; ?>/assignedChecklist/view/<?php echo $aclist->AssignID ?>" >view </a> &nbsp; || &nbsp;
+           <a href="<?php echo RESOURCE; ?>/assignedChecklist/update/<?php echo $aclist->AssignID ?>" >update </a> &nbsp; || &nbsp;
            
            <a id="dlink_<?php echo $aclist->AssignID ?>" onclick="return confirm('Are you sure you want to Delete Assigned Checklist?');" href="#" class='delLink' >delete</a>
 
