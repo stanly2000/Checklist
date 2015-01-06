@@ -16,3 +16,13 @@
     background-color: #EE6363;
 }
 
+.toggleChlist{
+    background-color:inherit;
+    border: none;
+}
+
+.toggleCheck{
+    background-color:inherit;
+    border: none;
+}
+
