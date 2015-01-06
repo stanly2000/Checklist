@@ -1,5 +1,5 @@
 <?php
-
+require_once APP . '/utilities/DebugLogger.php';
 class User
 {
 
@@ -61,12 +61,14 @@ class User
 
     public function remove($id) // $params = [])
     {
+        //DebugLogger::log('user remove func'.$id);
         try {
             $stmt = $this->db->prepare("CALL spDeleteUser (:p_UserID)");
             $stmt->bindValue(':p_UserID', $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $ex) {
+            DebugLogger::log($ex->getMessage());
             return false;
         }
     }

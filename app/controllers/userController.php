@@ -5,6 +5,7 @@ class userController extends Controller
 
     public function index()
     {
+       
         if ($_SESSION['SecurityLevel'] <= 1) {
             $this->redirect('login');
         } else {
@@ -48,12 +49,13 @@ class userController extends Controller
     public function remove()
     {
         $id = htmlspecialchars(trim($_POST['id']));
+        DebugLogger::log($id);
         if (isset($id)) {
             $model = $this->model('User');
             if ($model->remove($id))
                 $_SESSION['afterActionMessage'] = "Action Successfully Completed";
             else
-                $_SESSION['afterActionMessage'] = "Action failded, DB Problem..";
+                $_SESSION['afterActionMessage'] = "Action failed, DB Problem..";
         }
         $this->redirect(__CLASS__);
     }
