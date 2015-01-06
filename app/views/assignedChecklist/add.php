@@ -1,4 +1,8 @@
 <h4>Assign Checklists to Groups</h4>
+
+<?php 
+print_r($data['groups']);
+?>
 <div class="row">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6">
@@ -18,8 +22,12 @@
     &nbsp; &nbsp;
     </td>
     <td>
-    <select class="form-control" id="checklistName" name="checklistName"
-            value="<?php echo $data['checklist']->ChecklistName ?>">
+        <select class="form-control" id="checklistName" name="checklistName" >
+            <?php
+            foreach ($data['checklists'] as $clist){?>
+            <option  value="<?php echo $clist->ChecklistID ?>"> <?php echo $clist->ChecklistName ?> </option>
+                
+              <?php } ?>
                
       </select>
         </td>
@@ -31,10 +39,13 @@
     
           </td>
           <td>
-           <select class="form-control" id="groupName" name="groupName" value="">
-        <option value="1">aaa</option>
-          <option value="2">bbb</option>
-          <option value="3">ccc</option>         
+           <select class="form-control" id="groupName" name="groupName" >
+          <?php
+            foreach ($data['groups'] as $glist){?>
+            <option  value="<?php echo $glist->GroupID ?>"> <?php echo $glist['GroupName'] ?> </option>
+                
+              <?php } ?>       
+          
       </select>
         </td>
       </tr>

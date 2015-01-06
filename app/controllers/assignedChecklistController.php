@@ -18,21 +18,26 @@ class AssignedChecklistController extends Controller
     {
         $model = $this->model('AssignedChecklist');
         if ($model->load($id)) {
-           // $model->getTasks();
+  
             
             $this->render(__CLASS__, __FUNCTION__, 'assignedChecklist/view', [
                 'assignedChecklist' => $model
             ], 'updatePost');
         } else
             $this->redirect(__CLASS__);
-        
-     
     }
-
+   
     public function add()
     {
-        $this->render(__CLASS__, __FUNCTION__, 'assignedChecklist/add', null, 'addPost');
+        $modelChecklist = $this->model('Checklist');
+        $checklists = $modelChecklist->getAll();
+        
+        $modelGroup = $this->model('Group');
+        $groups = $modelGroup->getGroups();
+        
+        $this->render(__CLASS__, __FUNCTION__, 'assignedChecklist/add', ['checklists'=>$checklists, 'groups'=>$groups], 'addPost');
     }
+    
 
     public function addPost()
     {

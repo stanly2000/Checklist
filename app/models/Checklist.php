@@ -75,7 +75,8 @@ class Checklist implements IDbModels
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-
+    
+    
     public function remove($id) // $params = [])
     {
         try {

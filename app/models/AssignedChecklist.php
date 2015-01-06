@@ -76,6 +76,14 @@ class AssignedChecklist implements IDbModels
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    
+     public function getAllGroups()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tbGroup");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
 
     public function remove($id) {
         
