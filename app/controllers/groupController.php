@@ -36,9 +36,7 @@ class groupController extends Controller
         }
         else{
             alert('user not added');
-        }
-        
-        
+        }  
     }
 
     public function update($id)
@@ -83,9 +81,8 @@ class groupController extends Controller
           $this->redirect('group/index');
         }
         else{
-            alert('User not Deleted');
+            echo 'Something Went Wrong Please Contact IT';
+            die();
         }
-
-        
     }
 }

@@ -38,13 +38,15 @@ class Group
         $stmt->execute(array(
             $ID, $groupname
         ));
-        return $stmt;
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
     }
     public function CreateGroup($groupname) {
         
         $stmt = $this->db->prepare('CALL spInsertGroup(?)');
         $stmt->execute(array($groupname));
-        return $stmt;
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
         
     }
     public function DeleteGroup($id) {
