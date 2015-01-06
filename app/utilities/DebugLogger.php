@@ -7,7 +7,7 @@
 class DebugLogger
 {
 
-    public static $file = "log.txt";
+    public static $file = "/tmp/log.txt";
 
     private static $depth;
 
