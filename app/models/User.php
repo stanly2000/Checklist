@@ -59,10 +59,15 @@ class User
         $stmt->execute();
     }
 
-    public function remove($params = [])
+    public function remove($id) // $params = [])
     {
-        $stmt = $this->db->prepare("CALL spDeleteUser (:p_UserID)");
-        $stmt->bindValue(':p_UserID', $params['id'], PDO::PARAM_INT);
-        $stmt->execute();
+        try {
+            $stmt = $this->db->prepare("CALL spDeleteUser (:p_UserID)");
+            $stmt->bindValue(':p_UserID', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
     }
 }

@@ -47,5 +47,16 @@ class userController extends Controller
         } else
             $this->redirect(__CLASS__);
     }
+    public function remove()
+    {
+        $id = htmlspecialchars(trim($_POST['id']));
+        if (isset($id)) {
+            $model = $this->model('User');
+            if ($model->remove($id))
+                $_SESSION['afterActionMessage'] = "Action Successfully Completed";
+            else
+                $_SESSION['afterActionMessage'] = "Action failded, DB Problem..";
+        }
+        $this->redirect(__CLASS__);
+    }
 }
-
