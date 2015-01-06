@@ -35,7 +35,7 @@ class groupController extends Controller
             $this->redirect('index/view');
         }
         else{
-            alert('user not added');
+            echo 'Something went wrong please contact IT';
         }  
     }
 
@@ -52,7 +52,13 @@ class groupController extends Controller
     {
         $model = $this->model('Group');
         $groupupdate = $model->UpdateGroup($_POST['GroupID'],$_POST['UGName']);
-        $this->redirect('group/index');
+                if ($groupupdate >=1) {
+          $this->redirect('group/index');
+        }
+        else{
+            echo 'Something Went Wrong Please Contact IT';
+            die();
+        }
     }
     public function create() {
         
@@ -63,7 +69,13 @@ class groupController extends Controller
         
         $model=  $this->model('Group');
         $groupcreate = $model->CreateGroup($_POST['groupname']);
-        $this->redirect('group/index');
+                if ($groupcreate >=1) {
+          $this->redirect('group/index');
+        }
+        else{
+            echo 'Something Went Wrong Please Contact IT';
+            die();
+        }
         
     }
     public function delete($id) {
