@@ -60,7 +60,7 @@
           <li class="divider"></li>
         </ul>
       </li>
-      <li class="active"><a href="<?php echo RESOURCE ;?>/task/">Tasks</a></li>
+      <li class="active"><a href="<?php echo RESOURCE ;?>/check">Update Checklist Progress</a></li>
     </ul>
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search">
