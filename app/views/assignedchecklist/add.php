@@ -1,16 +1,12 @@
 <h4>Assign Checklists to Groups</h4>
 
-<?php 
-print_r($data['groups']);
-?>
 <div class="row">
   <div class="col-lg-3">&nbsp;</div>
   <div class="col-lg-6">
       <form method="POST" action="<?php echo RESOURCE ;?>/home/">
           <input type="hidden" name="cntr" value="<?php echo $activeController;?>" >
           <input type="hidden" name="actn" value="<?php echo $callbackMethod;?>" >
-          <input type="hidden" name="checklistid" value="<?php echo $data['checklist']->ChecklistID;?>" >
-          <input type="hidden" name="id" value="<?php echo $data['group']->GroupID;?>" >
+
           
   <div class="form-group">
       
@@ -22,7 +18,7 @@ print_r($data['groups']);
     &nbsp; &nbsp;
     </td>
     <td>
-        <select class="form-control" id="checklistName" name="checklistName" >
+        <select class="form-control" id="checklistName" name="checklistID" >
             <?php
             foreach ($data['checklists'] as $clist){?>
             <option  value="<?php echo $clist->ChecklistID ?>"> <?php echo $clist->ChecklistName ?> </option>
@@ -39,10 +35,11 @@ print_r($data['groups']);
     
           </td>
           <td>
-           <select class="form-control" id="groupName" name="groupName" >
+              <select class="form-control" id="groupName" name="groupID" >
           <?php
+          
             foreach ($data['groups'] as $glist){?>
-            <option  value="<?php echo $glist->GroupID ?>"> <?php echo $glist['GroupName'] ?> </option>
+            <option  value="<?php echo $glist['GroupID'] ?>"> <?php echo $glist['GroupName'] ?> </option>
                 
               <?php } ?>       
           

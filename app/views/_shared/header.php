@@ -77,7 +77,7 @@
                     <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
                 </li>
         <li id="UserChecklist">
-                     <a href="<?php echo RESOURCE ;?>/assignedChecklist/index" class="dropdown-toggle" data-toggle="dropdown">Assign Checklists<b class="caret"></b></a>   
+                     <a href="<?php echo RESOURCE ;?>/assignedchecklist/index" class="dropdown-toggle" data-toggle="dropdown">Assign Checklists<b class="caret"></b></a>   
                 </li> 
         
         <?php  }  

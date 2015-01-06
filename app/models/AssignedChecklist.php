@@ -90,6 +90,19 @@ class AssignedChecklist implements IDbModels
     }
 
     public function save() {
+        try
+           {
+          $stmt = $this->db->prepare("CALL spAssignChecklist (:p_ChecklistID, :p_GroupID) ");
+                $stmt->bindValue(':p_ChecklistID', $this->ChecklistID, PDO::PARAM_STR);
+                 $stmt->bindValue(':p_GroupID', $this->GroupID, PDO::PARAM_STR);
+                $stmt->execute();
+               
+            return true;
+           
+        } catch
+        (PDOException $ex) {
+            return false;
+        }
         
     }
 

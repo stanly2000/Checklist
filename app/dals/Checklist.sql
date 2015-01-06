@@ -498,13 +498,12 @@ END //
  DELIMITER //
  CREATE PROCEDURE spAssignChecklist(  
  p_GroupID int,
- p_ChecklistID int,
- p_AssignTime int
+ p_ChecklistID int
  )
     begin
 		 insert into tbAssignChecklist 
                 (GroupID, ChecklistID, AssignTime) values
-			   (p_GroupID, p_ChecklistID, p_AssignTime);  
+			   (p_GroupID, p_ChecklistID, now());  
   SET @lastID = LAST_INSERT_ID();
                           SELECT @lastID as lastInsertID;            
     END //
