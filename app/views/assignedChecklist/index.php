@@ -1,6 +1,6 @@
 <h3>Assigned Checklists</h3>
 
-<a class="font18" href="<?php echo RESOURCE; ?>/assignchecklist/add">Click Here to Assign Checklists to Group</a>
+<a class="font18" href="<?php echo RESOURCE; ?>/assignedChecklist/add">Click Here to Assign Checklists to Group</a>
 
 <div class="row">
    

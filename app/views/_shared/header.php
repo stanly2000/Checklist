@@ -19,14 +19,17 @@
                 $('#Loginbtn').hide();
                 $('#Logoutbtn').hide();
                 $('#UserManager').hide();
+                $('#UserChecklist').hide();
             if (data != -1) {
                 $('#Loginbtn').hide();
                 $('#Logoutbtn').show();
                 if (data >= 2) {
                     $('#UserManager').show();
+                    $('#UserChecklist').show();
                 }
                 else{
                     $('#UserManager').hide();
+                    $('#UserChecklist').hide();
                 }
             }
             else{
@@ -70,8 +73,13 @@
         <li><a>Hello&nbsp;<?php echo $_SESSION['FirstName'];?>!</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/logout">Log out</a></li>
                 <li id="UserManager" class="dropdown">
-        <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
-      </li>
+                    
+                    <a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager <b class="caret"></b></a>
+                </li>
+        <li id="UserChecklist">
+                     <a href="<?php echo RESOURCE ;?>/assignedChecklist/index" class="dropdown-toggle" data-toggle="dropdown">Assign Checklists<b class="caret"></b></a>   
+                </li> 
+        
         <?php  }  
         }  ?>
         <li><a id="Loginbtn" href="<?php echo RESOURCE ;?>/login/index">Log in</a></li>
