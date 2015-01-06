@@ -29,6 +29,7 @@ class LoginController extends Controller
     public function logout()
     {
         $_SESSION['SecurityLevel'] = - 1;
+        session_destroy();
         $this->redirect('login/index');
     }
 }
