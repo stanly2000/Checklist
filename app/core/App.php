@@ -88,7 +88,8 @@ class App
             'user',
             'checklist',
             'task',
-            'login'
+            'login',
+            'assignedChecklist'
         );
         if (! in_array($this->url_controller, $controllers)) {
             die("ERROR BAD CONTROLLER");
