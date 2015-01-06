@@ -80,6 +80,10 @@ PropertyAttribute varchar(120) null, -- attribute can be optional
 PropertyValue  decimal(10,2) null   -- PropertyValue is optional so it is set to null
 );
 
+insert into tbTaskProperties(TaskID, PropertyName,PropertyAttribute, PropertyValue) values
+(1,'Check and log shift start inventory items quantity','Total Items in Stock', null),
+(1,'Deposit cash in bank','Amount Deposited',null);
+
 create table tbStatus(
 StatusID      int primary key auto_increment,
 StatusName    varchar(60)
@@ -97,14 +101,28 @@ GroupID       int,
               FOREIGN KEY (GroupID) REFERENCES tbGroup(GroupID),
 ChecklistID   int,
               FOREIGN KEY (ChecklistID) REFERENCES tbChecklist(ChecklistID),
-AssignTime    datetime
+AssignTime    datetime,
+StatusID      int,
+              FOREIGN KEY (StatusID) REFERENCES tbStatus(StatusID)
 );
 
-insert into tbAssignChecklist (GroupID, ChecklistID, AssignTime) values
-(1, 1,'2014-01-01'),
-(1, 2,'2014-01-02'),
-(2, 3,'2014-01-04'),
-(3, 4,'2014-01-05');
+insert into tbAssignChecklist (GroupID, ChecklistID, AssignTime, StatusID) values
+(1, 1,'2014-01-01', 3),
+(1, 2,'2014-01-02', 3),
+(2, 3,'2014-01-04', 2),
+(3, 4,'2014-01-05', 1);
+
+create table tbTasksCompleted(
+TasksCompletedID int primary key auto_increment,
+AssignID         int,
+                 FOREIGN KEY (AssignID) REFERENCES tbAssignChecklist(AssignID),
+TaskID           int,
+                 FOREIGN KEY (TaskID) REFERENCES tbTask(TaskID),
+StatusID         int,
+                 FOREIGN KEY (StatusID) REFERENCES tbStatus(StatusID),
+UserID           int,
+                 FOREIGN KEY (UserID) REFERENCES tbUser(UserID)
+);
  
                 -- ***************STORED PROCEDURES*************** --
 -- NOTE:
