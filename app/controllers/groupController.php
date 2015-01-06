@@ -25,7 +25,20 @@ class groupController extends Controller
      //die();
         $this->render(__CLASS__, __FUNCTION__, 'group/view', [
             'view' => $view
-        ]);
+        ],'AddUserToGroup');
+    }
+    public function AddUserToGroup() {
+        
+        $model = $this->model("Group");
+        $AddUser = $model->AddUserToGroup($_Post['userid'], $_Post['groupid']);
+        if ($AddUser >=1) {
+            $this->redirect('index/view');
+        }
+        else{
+            alert('user not added');
+        }
+        
+        
     }
 
     public function update($id)
@@ -66,7 +79,13 @@ class groupController extends Controller
         
         $model = $this->model('Group');
         $groupdelete = $model->DeleteGroup($_POST['GroupID']);
-        $this->redirect('group/index');
+        if ($groupdelete >=1) {
+          $this->redirect('group/index');
+        }
+        else{
+            alert('User not Deleted');
+        }
+
         
     }
 }

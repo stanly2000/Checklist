@@ -51,6 +51,14 @@ class Group
         
         $stmt = $this->db->prepare('CALL spDeleteGroup (?)');
         $stmt->execute(array($id));
-        return $stmt;
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
+    }
+    public function AddUserToGroup($userid, $groupid) {
+        
+        $stmt = $this->db->prepare('update tbUserGroup set GroupID = (?) where UserID = (?);');
+        $stmt->execute(array($userid, $groupid));
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
     }
 }

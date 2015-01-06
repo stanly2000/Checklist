@@ -1,14 +1,16 @@
-
 <hmlt>
     <head>
         <title>View Groups</title>
     </head>
     <body>
-<div class="panel panel-info">
+<div class="panel panel-success">
   <div class="panel-heading">
       <h3 class="panel-title"><?PHP echo $data['view'][0]->GroupName ?></h3>
+      <input type="hidden" value="<?PHP echo $data['view'][0]->GroupID ?>" name="groupid" id="groupid" />
   </div>
   <div class="panel-body">
+      <form method="post" action="<?php echo RESOURCE ;?>/group/AddUserToGroup">
+      </form>
       <table class="table table-striped table-hover" >
           <thead>
               <tr class="success" >
