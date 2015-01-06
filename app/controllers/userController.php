@@ -35,12 +35,10 @@ class userController extends Controller
 
     public function view($id)
     {
-        $model = $this->model('User');
+       $model = $this->model('User');
         if ($model->load($id)) {
-            if (! $model->getUser()) {
-                echo "h";
-                die();
-            }
+            $model->getUser();
+            
             $this->render(__CLASS__, __FUNCTION__, 'user/view', [
                 'user' => $model
             ], 'updatePost');
