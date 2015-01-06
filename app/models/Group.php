@@ -28,7 +28,7 @@ class Group
         $stmt->execute(array(
             $id
         ));
-        $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchall(PDO::FETCH_OBJ);
         return $rows;
     }
 
