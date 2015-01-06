@@ -3,9 +3,15 @@
         <title>Group Delete?</title>
     </head>
     <body>
+  <div class="panel panel-success lg-5">
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
+  <div class="panel-body">
         <form method="post" action="<?php echo RESOURCE ;?>/group/DeleteGroup">
             <table>
-                <?PHP foreach($data['delete'] as $d) { ?>
+
+    <?PHP foreach($data['delete'] as $d) { ?>
                 <tr>
                     <td>
                         ID:&nbsp;
@@ -24,8 +30,11 @@
                     </td>
                 <?PHP } ?>
             </table>
-            <input type="button" value="back" onclick="document.location.href='<?php echo RESOURCE; ?>/group/index'" />
-            <input type="submit" value="Delete" />
+            <input type="button" value="Back" onclick="document.location.href='<?php echo RESOURCE; ?>/group/index'" class="btn btn-success"/>
+            <input type="submit" value="Delete" class="btn btn-success" />
+  </div>
+</div>
+                
         </form>
     </body>
 </html>
