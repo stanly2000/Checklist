@@ -29,22 +29,23 @@ class AssignedChecklistController extends Controller
      
     }
 
-//    public function add()
-//    {
-//        $this->render(__CLASS__, __FUNCTION__, 'assignedChecklist/add', null, 'addPost');
-//    }
-//
-//    public function addPost()
-//    {
-//        $model = $this->model('AssignedChecklist');
-//        // adding this for using general model validation rules
-//        $dummyInt = 1;
-//        $validator = new Validation();
-//        $title = htmlspecialchars(trim($_POST['title']));
-//        $fields = [
-//            'title' => $title,
-//            'id' => $dummyInt
-//        ];
+    public function add()
+    {
+        $this->render(__CLASS__, __FUNCTION__, 'assignedChecklist/add', null, 'addPost');
+    }
+
+    public function addPost()
+    {
+        $model = $this->model('AssignedChecklist');
+        // adding this for using general model validation rules
+        $dummyInt = 1;
+        $validator = new Validation();
+        $checklistName = htmlspecialchars(trim($_POST['checklistName']));
+        $fields = [
+            'checklistName' => $checklistName,
+            'id' => $dummyInt
+        ];
+    }
 //        
 //        if ($validator->validate($fields, $model->validationRules)) {
 //            
