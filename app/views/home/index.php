@@ -38,7 +38,7 @@ echo "This is View file which belonges to Controller Home Method Index";?>
     
     <div class="bs-example">
         
-        <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide" data-interval="5000" data-ride="carousel">
             <!-- Carousel indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>

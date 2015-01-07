@@ -58,7 +58,7 @@
         <a href="<?php echo RESOURCE ;?>/checklist" class="dropdown-toggle" data-toggle="dropdown">Checklists <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo RESOURCE ;?>/checklist/">View All Checklists</a></li>
-          <li><a href="<?php echo RESOURCE ;?>/checklist/add.php">Add New Checklist</a></li>
+          <li><a href="<?php echo RESOURCE ;?>/checklist/add">Add New Checklist</a></li>
           <li class="divider"></li>
         </ul>
       </li>
@@ -77,8 +77,8 @@
   <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Administrator <b class="caret"></b></a>
             <ul class="dropdown-menu">
-            <li><a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager</a></li>
-            <li><a href="<?php echo RESOURCE ;?>/assignedchecklist/index" class="dropdown-toggle" data-toggle="dropdown">Assign Checklists</a></li>
+            <li><a href="<?php echo RESOURCE ;?>/user/index">Users Manager</a></li>
+            <li><a href="<?php echo RESOURCE ;?>/assignedchecklist/index">Assign Checklists</a></li>
             <li class="divider"></li>
             <li><a href="#">Something else </a></li>
             </ul>
