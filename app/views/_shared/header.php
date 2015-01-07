@@ -8,6 +8,8 @@
         <link href="<?php echo RESOURCE ;?>/css/Site.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo RESOURCE ;?>/css/custom.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo RESOURCE ;?>/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="<?php echo RESOURCE ;?>/js/bootstrap.min.js" type="text/javascript"></script>
+  
         <script>
             var _PATH_ = '<?php echo RESOURCE; ?>';
             var _POST_URL = "<?php echo RESOURCE; ?>/home/index.php";
@@ -72,15 +74,13 @@
             ?>
         <li><a>Hello&nbsp;<?php echo $_SESSION['FirstName'];?>!</a></li>
         <li><a id="Logoutbtn" href="<?php echo RESOURCE ;?>/login/logout">Log out</a></li>
-        <li class="dropdown open">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                Administrator <span class="caret"></span>
-            </a>
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Administrator <b class="caret"></b></a>
             <ul class="dropdown-menu">
             <li><a href="<?php echo RESOURCE ;?>/user/index" class="dropdown-toggle" data-toggle="dropdown">Users Manager</a></li>
             <li><a href="<?php echo RESOURCE ;?>/assignedchecklist/index" class="dropdown-toggle" data-toggle="dropdown">Assign Checklists</a></li>
             <li class="divider"></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Something else </a></li>
             </ul>
         </li>
         <?php  }  
