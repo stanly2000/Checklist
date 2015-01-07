@@ -53,7 +53,7 @@
   </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="../public/">Home</a></li>
+      <li><a href="<?php echo RESOURCE ;?>">Home</a></li>
       <li class="dropdown">
         <a href="<?php echo RESOURCE ;?>/checklist" class="dropdown-toggle" data-toggle="dropdown">Checklists <b class="caret"></b></a>
         <ul class="dropdown-menu">
