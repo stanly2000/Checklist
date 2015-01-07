@@ -2,7 +2,6 @@
 
 class userController extends Controller
 {
-
     public function index()
     {
        
@@ -16,7 +15,23 @@ class userController extends Controller
             ]);
         }
     }
-
+    public function add() {
+        
+        $this->render(__CLASS__, __FUNCTION__, 'user/add', null ,'AddPost');
+        
+    }
+    public function AddPost() {
+        
+        $model = $this->model('User');
+        $CreateUser = $model->AddPost($_REQUEST['fName'], $_REQUEST['lName'], $_REQUEST['email']);
+        if ($CreateUser >=1) {
+            $this->redirect('user/index');
+        }
+        else{
+            echo 'Something went wrong, User is not registered';
+        }
+        
+    }
     public function update($id = null)
     {
         $model = $this->model('User');

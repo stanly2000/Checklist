@@ -52,11 +52,12 @@ class User
         }
     }
 
-    public function add($params = [])
+    public function AddPost($firstname, $lastname, $email)
     {
-        $stmt = $this->db->prepare("CALL spInsertUser (:p_Email) ");
-        $stmt->bindValue(':p_Email', $params['email'], PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt = $this->db->prepare("INSERT into Checklist.tbUser(FirstName, LastName, Email) values (?,?,?);");
+        $stmt->execute(array($firstname, $lastname, $email));
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
     }
 
     public function remove($id) // $params = [])
