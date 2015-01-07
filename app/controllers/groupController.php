@@ -5,7 +5,7 @@ class groupController extends Controller
 
     public function index()
     {
-        if (! empty($_SESSION)) {
+        if ($_SESSION['SecurityLevel'] >= 0 ) {
             
             $model = $this->model('Group');
             $groups = $model->GetGroups($id = null);
