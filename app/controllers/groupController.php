@@ -21,8 +21,6 @@ class groupController extends Controller
     {
         $model = $this->model('Group');
         $view = $model->GetView($id);
-     //print_r($view);
-     //die();
         $this->render(__CLASS__, __FUNCTION__, 'group/view', [
             'view' => $view
         ],'AddUserToGroup');
@@ -30,13 +28,15 @@ class groupController extends Controller
     public function AddUserToGroup() {
         
         $model = $this->model("Group");
-        $AddUser = $model->AddUserToGroup($_Post['userid'], $_Post['groupid']);
+        $AddUser = $model->AddUserToGroup($_REQUEST['GroupID'], $_REQUEST['UserID']);
         if ($AddUser >=1) {
-            $this->redirect('index/view');
+            $this->redirect(__CLASS__,'view',['GroupID'=>$_REQUEST['GroupID']]);
         }
         else{
-            echo 'Something went wrong please contact IT';
-        }  
+            $message = "User Already exists";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            $this->redirect(__CLASS__,'view',['GroupID'=>$_REQUEST['GroupID']]);
+        }
     }
 
     public function update($id)
@@ -57,7 +57,6 @@ class groupController extends Controller
         }
         else{
             echo 'Something Went Wrong Please Contact IT';
-            die();
         }
     }
     public function create() {

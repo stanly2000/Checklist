@@ -293,9 +293,11 @@ DELIMITER //
         select tbUser.UserID, FirstName, LastName, Email, SecurityLevel, 
                tbGroup.GroupID, GroupName
         from   tbUserGroup, tbUser, tbGroup
-        where  tbUser.UserID = tbUserGroup.UserID and
-               tbUserGroup.GroupID = p_GroupID and
-               tbUserGroup.GroupID = tbGroup.GroupID;
+
+        where   tbGroup.GroupID = p_GroupID and
+               tbUser.UserID = tbUserGroup.UserID and
+			   tbUserGroup.GroupID = tbGroup.GroupID;
+              
     END //
  DELIMITER ;
  

@@ -24,10 +24,8 @@ class Group
 
     public function GetView($id)
     {
-        $stmt = $this->db->prepare('CALL spGetUserGroupByID(?)');
-        $stmt->execute(array(
-            $id
-        ));
+        $stmt = $this->db->prepare('CALL spGetUserGroupByID (?)');
+        $stmt->execute(array($id));
         $rows = $stmt->fetchall(PDO::FETCH_OBJ);
         return $rows;
     }
@@ -56,10 +54,10 @@ class Group
         $affected_rows = $stmt->rowCount();
         return $affected_rows;
     }
-    public function AddUserToGroup($userid, $groupid) {
+    public function AddUserToGroup($groupid, $userid) {
         
-        $stmt = $this->db->prepare('update tbUserGroup set GroupID = (?) where UserID = (?);');
-        $stmt->execute(array($userid, $groupid));
+        $stmt = $this->db->prepare('update Checklist.tbUserGroup set GroupID = ? where UserID = ?;');
+        $stmt->execute(array($groupid, $userid));
         $affected_rows = $stmt->rowCount();
         return $affected_rows;
     }
