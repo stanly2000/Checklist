@@ -82,7 +82,7 @@ PropertyValue  decimal(10,2) null   -- PropertyValue is optional so it is set to
 
 insert into tbTaskProperties(TaskID, PropertyName,PropertyAttribute, PropertyValue) values
 (1,'Check and log shift start inventory items quantity','Total Items in Stock', null),
-(1,'Deposit cash in bank','Amount Deposited',null);
+(2,'Deposit cash in bank','Amount Deposited',null);
 
 create table tbStatus(
 StatusID      int primary key auto_increment,
