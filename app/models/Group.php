@@ -13,15 +13,28 @@ class Group
     {
         $this->db = $db;
     }
-
-    public function GetGroups()
+    public function GetUser() {
+        
+      $stmt = $this->db->query('SELECT * FROM Checklist.tbUser;');
+      $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
+      return $rows;
+        
+    }
+    public function GetGroups($id)
     {
+        if ($id != null) {
+        $stmt = $this->db->prepare("SELECT * FROM Checklist.tbGroup where GroupID = ?;");
+        $stmt->execute(array($id));
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+        }
+        else{
         $stmt = $this->db->prepare("SELECT * FROM Checklist.tbGroup;");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
+        }
     }
-
     public function GetView($id)
     {
         $stmt = $this->db->prepare('CALL spGetUserGroupByID (?)');

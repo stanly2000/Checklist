@@ -1,10 +1,3 @@
-      <?PHP         
-      $stmt = $this->db->query('SELECT * FROM Checklist.tbUser;');
-      $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
-        $group = $this->db->prepare('CALL spGetUserGroupByID (?)');
-        $group->execute(array($id));
-        $grows = $group->fetchall(PDO::FETCH_OBJ);
-      ?>
 <hmlt>
     <head>
         <title>View Groups</title>
@@ -12,13 +5,13 @@
     <body>
 <div class="panel panel-success">
   <div class="panel-heading">
-      <h3 class="panel-title"><?PHP echo $grows[0]->GroupName; ?></h3>
+      <h3 class="panel-title"><?PHP echo $data['GroupView'][0]['GroupName']; ?></h3>
   </div>
   <div class="panel-body">
       <form method="post" action="<?php echo RESOURCE ;?>/group/AddUserToGroup">
-          <input type="hidden" value="<?PHP echo $grows[0]->GroupID;?>" name="GroupID" id="GroupID" />
+          <input type="hidden" value="<?PHP echo $data['GroupView'][0]['GroupID']?>" name="GroupID" id="GroupID" />
           <select name="UserID">
-          <?PHP foreach($rows as $r) { ?>
+          <?PHP foreach($data['UserView'] as $r) { ?>
           <option style="color:black;" value="<?PHP echo $r['UserID']; ?>">
               <?PHP echo $r['UserID']; ?>
           <?PHP echo $r['FirstName']; ?>
