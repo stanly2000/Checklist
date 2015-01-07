@@ -58,6 +58,7 @@
 <script>
 
     $(document).ready(function(){
+    	var currTR ="";
         $('#btnAddTask').on('click', function(){
             // display add new task div
             $('#trNewEdit').removeClass("unseen");
@@ -71,7 +72,8 @@
         	
              taskID = tmp[1];
 
-             var currTR = $('#trTask_' + taskID);
+              currTR = $('#trTask_' + taskID);
+             $(currTR).addClass('unseen');
              //console.log(currTR);
 
              /* fill the edit form with selected task values */           
@@ -168,6 +170,8 @@
                          clearEditForm();
                         $('#trNewEdit').addClass("unseen");
                         displayMessage(res['afterActionMessage']);
+
+                        $(currTR).removeClass('unseen');
                     },
                     error: function (jqXHR, textStatus, errorThrown)
                     {}
@@ -179,6 +183,8 @@
             clearEditForm();
              $('#trNewEdit').addClass("unseen");
              hideErrorMessageBoxes();
+
+             $(currTR).removeClass('unseen');
         });
     });
     
