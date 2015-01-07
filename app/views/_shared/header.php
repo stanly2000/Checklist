@@ -79,6 +79,7 @@
             <ul class="dropdown-menu">
             <li><a href="<?php echo RESOURCE ;?>/user/index">Users Manager</a></li>
             <li><a href="<?php echo RESOURCE ;?>/assignedchecklist/index">Assign Checklists</a></li>
+            <li><a href="<?php echo RESOURCE ;?>/group/index">Assign Group</a></li>
             <li class="divider"></li>
             <li><a href="#">Something else </a></li>
             </ul>
