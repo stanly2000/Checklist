@@ -101,6 +101,7 @@ class AssignedChecklist implements IDbModels
            
         } catch
         (PDOException $ex) {
+            echo $ex->getMessage();die();
             return false;
         }
         

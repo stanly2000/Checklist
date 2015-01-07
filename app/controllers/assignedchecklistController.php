@@ -41,19 +41,17 @@ class AssignedChecklistController extends Controller
 
     public function addPost()
     {
-       
+     //  print_r($_POST);die();
         $model = $this->model('AssignedChecklist');
         // adding this for using general model validation rules
         $dummyInt = 1;
-        $validator = new Validation();
+      
         $checklistid = htmlspecialchars(trim($_POST['checklistID']));
-        $id = htmlspecialchars(trim($_POST['id']));
-        $fields = [
-            'checklistID' => $checklistid,
-            'id' => $id
-        ];
+        $id = htmlspecialchars(trim($_POST['groupID']));
+      
                 
             $model->ChecklistID = $checklistid;
+            $model->GroupID = $id;
             if ($model->save())
                 $_SESSION['afterActionMessage'] = "Action Successfully Completed";
             else

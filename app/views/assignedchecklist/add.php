@@ -18,7 +18,7 @@
     &nbsp; &nbsp;
     </td>
     <td>
-        <select class="form-control" id="checklistName" name="checklistID" >
+        <select class="form-control" id="checklistID" name="checklistID" >
             <?php
             foreach ($data['checklists'] as $clist){?>
             <option  value="<?php echo $clist->ChecklistID ?>"> <?php echo $clist->ChecklistName ?> </option>
